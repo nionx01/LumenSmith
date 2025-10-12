@@ -1,27 +1,43 @@
-LumenSmith License (All Rights Reserved)
+# LumenSmith License (All Rights Reserved)
 
-Copyright © 2025 Benjamin Juhász (NionX)
-
+**Copyright © 2025 Benjamin Juhász (NionX)**
 All rights reserved.
 
-This software and its source code, binary files, and any associated assets, including but not limited to textures, configuration examples, documentation, and icons, are the exclusive property of Benjamin Juhász (NionX).
+---
 
-You may not, without prior written permission from the author:
+## Ownership
 
-Copy, reproduce, distribute, or publish any part of this software or its files, whether modified or unmodified.
+This software and all of its components — including but not limited to **source code**, **binary files**, **textures**, **configuration examples**, **documentation**, and **icons** — are the exclusive property of **Benjamin Juhász (NionX)**.
 
-Modify, decompile, disassemble, reverse engineer, or create derivative works based on this software.
+---
 
-Redistribute, resell, sublicense, or otherwise make this software available for public or commercial use.
+## Restrictions
 
-Upload this plugin, its code, or any modified versions to any website, repository, or distribution platform (including but not limited to Modrinth, SpigotMC, Bukkit, CurseForge, or GitHub) without explicit written permission.
+You **may not**, without prior written permission from the author:
 
-Claim ownership, authorship, or contribution to this software, in full or in part.
+* Copy, reproduce, distribute, or publish any part of this software or its files, whether modified or unmodified.
+* Modify, decompile, disassemble, reverse engineer, or create derivative works based on this software.
+* Redistribute, resell, sublicense, or otherwise make this software available for public or commercial use.
+* Upload this plugin, its code, or any modified versions to **any website, repository, or distribution platform** (including but not limited to *Modrinth, SpigotMC, Bukkit, CurseForge,* or *GitHub*) without explicit written permission.
+* Claim ownership, authorship, or contribution to this software, in full or in part.
 
-Personal use on private servers is allowed, provided no part of the plugin or its source code is shared publicly.
-Commercial or network-wide use requires explicit permission from the author.
+---
 
-Violation of these terms will result in copyright enforcement actions under applicable law.
+## Permissions
+
+* **Personal use on private servers** is allowed, provided no part of the plugin or its source code is shared publicly.
+* **Commercial or network-wide use** requires explicit written permission from the author.
+
+---
+
+## Enforcement
+
+Violation of these terms will result in **copyright enforcement actions under applicable law**.
+All unauthorized use, distribution, or modification will be pursued to the full extent of intellectual property laws.
+
+---
+
+## Contact
 
 For inquiries, permissions, or collaborations, contact:
-jbenjamyn1@gmail.com
+📧 **[jbenjamyn1@gmail.com](mailto:jbenjamyn1@gmail.com)**
