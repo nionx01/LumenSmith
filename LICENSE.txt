@@ -1,13 +1,13 @@
-## LumenSmith License (All Rights Reserved)
+LumenSmith License (All Rights Reserved)
 
 Copyright © 2025 Benjamin Juhász (NionX)
 All rights reserved.
 
-## Ownership
+Ownership
 
 This software and all of its components — including but not limited to source code, binary files, textures, configuration examples, documentation, and icons — are the exclusive property of Benjamin Juhász (NionX).
 
-## Restrictions
+Restrictions
 
 You may not, without prior written permission from the author:
 
@@ -21,7 +21,7 @@ Upload this plugin, its code, or any modified versions to any website, repositor
 
 Claim ownership, authorship, or contribution to this software, in full or in part.
 
-## Permissions
+Permissions
 
 Personal use on private servers is allowed, provided no part of the plugin or its source code is shared publicly.
 
@@ -32,7 +32,7 @@ Enforcement
 Violation of these terms will result in copyright enforcement actions under applicable law.
 All unauthorized use, distribution, or modification will be pursued to the full extent of intellectual property laws.
 
-## Contact
+Contact
 
 For inquiries, permissions, or collaborations, contact:
 jbenjamyn1@gmail.com
