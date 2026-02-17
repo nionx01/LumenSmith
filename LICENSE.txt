@@ -1,6 +1,6 @@
 LumenSmith License (All Rights Reserved)
 
-Copyright © 2025 Benjamin Juhász (NionX)
+Copyright © 2025 NionX
 All rights reserved.
 
 Ownership
