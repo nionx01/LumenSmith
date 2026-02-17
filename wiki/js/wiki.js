@@ -74,7 +74,15 @@
     { title: 'v0.1.3', desc: 'Instant recipe unlocks, /ls rescan, world filter improvements', url: 'changelog.html#v013', page: 'Changelog', keywords: 'v0.1.3 auto unlock rescan' },
     { title: 'v0.1.2', desc: 'World filter, adjacent_pair recipe type, /ls fixbook command', url: 'changelog.html#v012', page: 'Changelog', keywords: 'v0.1.2 world filter adjacent fixbook' },
     { title: 'v0.1.1', desc: 'Full protection for blocked items — prevent clicking, shift-crafting, dragging', url: 'changelog.html#v011', page: 'Changelog', keywords: 'v0.1.1 protection blocked shift click drag' },
-    { title: 'v0.1.0 — Initial Release', desc: 'First release with shaped/shapeless recipes, blocking, auto-unlock, permissions', url: 'changelog.html#v010', page: 'Changelog', keywords: 'v0.1.0 initial first release' }
+    { title: 'v0.1.0 — Initial Release', desc: 'First release with shaped/shapeless recipes, blocking, auto-unlock, permissions', url: 'changelog.html#v010', page: 'Changelog', keywords: 'v0.1.0 initial first release' },
+
+    // ── Terms of Service ──
+    { title: 'Terms of Service', desc: 'Full legal terms, license, warranties, liability, and usage rules for LumenSmith', url: 'terms.html', page: 'Legal', keywords: 'terms of service tos legal rules policy agreement' },
+    { title: 'License & Usage', desc: 'Non-exclusive license to use LumenSmith freely — redistribution and reverse-engineering restrictions', url: 'terms.html#license', page: 'Terms of Service', keywords: 'license usage rights restrictions redistribution decompile reverse engineer' },
+    { title: 'Intellectual Property', desc: 'NionX owns the plugin — users own their custom recipes and configurations', url: 'terms.html#intellectual-property', page: 'Terms of Service', keywords: 'intellectual property ownership copyright content user generated recipes' },
+    { title: 'Disclaimer of Warranties', desc: 'Plugin provided as-is without warranties of merchantability, fitness, or availability', url: 'terms.html#warranties', page: 'Terms of Service', keywords: 'warranty disclaimer as is no guarantee merchantability fitness' },
+    { title: 'Limitation of Liability', desc: 'NionX not liable for data loss, server issues, crashes, or damages — free plugin', url: 'terms.html#liability', page: 'Terms of Service', keywords: 'liability limitation damages data loss server crash not responsible' },
+    { title: 'Mojang / Microsoft Disclaimer', desc: 'LumenSmith is not affiliated with, endorsed by, or sponsored by Mojang Studios or Microsoft', url: 'terms.html#mojang', page: 'Terms of Service', keywords: 'mojang microsoft minecraft not affiliated independent community disclaimer' }
   ];
 
   // Create search trigger button in header
