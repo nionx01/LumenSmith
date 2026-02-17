@@ -81,6 +81,41 @@
   var searchCloseBtn = searchModal.querySelector('.search-close');
   var activeResultIdx = -1;
 
+  // ── Recent searches (localStorage) ──
+  var RECENT_KEY = 'lumensmith-recent-searches';
+  var MAX_RECENT = 5;
+
+  function getRecentSearches() {
+    try {
+      var data = JSON.parse(localStorage.getItem(RECENT_KEY));
+      return Array.isArray(data) ? data : [];
+    } catch (e) { return []; }
+  }
+
+  function saveRecentSearch(term) {
+    if (!term || term.length < 2) return;
+    var recent = getRecentSearches();
+    // Remove duplicate, add to front
+    recent = recent.filter(function (r) { return r.toLowerCase() !== term.toLowerCase(); });
+    recent.unshift(term);
+    if (recent.length > MAX_RECENT) recent = recent.slice(0, MAX_RECENT);
+    try { localStorage.setItem(RECENT_KEY, JSON.stringify(recent)); } catch (e) {}
+  }
+
+  function clearRecentSearches() {
+    try { localStorage.removeItem(RECENT_KEY); } catch (e) {}
+  }
+
+  // ── Popular / suggested searches ──
+  var popularSearches = [
+    { term: 'commands', label: 'Commands', desc: '/ls help, list, reload, create...' },
+    { term: 'permissions', label: 'Permissions', desc: 'Permission nodes & per-recipe access' },
+    { term: 'shaped recipe', label: 'Shaped Recipe', desc: '3x3 crafting grid recipes' },
+    { term: 'config', label: 'Config Guide', desc: 'Settings, world filter, custom recipes' },
+    { term: 'adjacent pair', label: 'Adjacent Pair', desc: 'Two items side by side in grid' },
+    { term: 'cooldown', label: 'Cooldowns', desc: 'Craft cooldowns & max crafts' }
+  ];
+
   function openSearch() {
     searchOverlay.classList.add('active');
     searchModal.classList.add('active');
@@ -98,32 +133,60 @@
 
   function highlightMatch(text, query) {
     if (!query) return text;
-    var escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return text.replace(new RegExp('(' + escaped + ')', 'gi'), '<mark>$1</mark>');
+    // Split query on separators so "adjacent_pair" highlights "adjacent" and "pair" individually
+    var terms = query.replace(/[_\-./]/g, ' ').split(/\s+/).filter(function (t) { return t.length > 0; });
+    var result = text;
+    terms.forEach(function (term) {
+      var escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      result = result.replace(new RegExp('(' + escaped + ')', 'gi'), '<mark>$1</mark>');
+    });
+    return result;
+  }
+
+  // Normalize underscores, hyphens, and special chars to spaces for matching
+  function normalizeText(str) {
+    return str.toLowerCase().replace(/[_\-./]/g, ' ');
   }
 
   function searchFilter(query) {
     if (!query) return searchIndex.slice(0, 8);
-    var q = query.toLowerCase();
+    // Normalize the query so "adjacent_pair" becomes "adjacent pair"
+    var q = normalizeText(query);
     var terms = q.split(/\s+/).filter(function (t) { return t.length > 0; });
 
     var scored = [];
     searchIndex.forEach(function (item) {
-      var haystack = (item.title + ' ' + item.desc + ' ' + item.keywords + ' ' + item.page).toLowerCase();
+      var titleNorm = normalizeText(item.title);
+      var descNorm = normalizeText(item.desc);
+      var keywordsNorm = normalizeText(item.keywords);
+      var pageNorm = normalizeText(item.page);
+      var haystack = titleNorm + ' ' + descNorm + ' ' + keywordsNorm + ' ' + pageNorm;
+
       var match = true;
       var score = 0;
 
       for (var i = 0; i < terms.length; i++) {
-        if (haystack.indexOf(terms[i]) === -1) { match = false; break; }
-        // Boost for title match
-        if (item.title.toLowerCase().indexOf(terms[i]) !== -1) score += 10;
-        // Boost for keyword match
-        if (item.keywords.toLowerCase().indexOf(terms[i]) !== -1) score += 5;
-        // Base score for description match
+        var t = terms[i];
+        if (haystack.indexOf(t) === -1) { match = false; break; }
+        // Strong boost for title match — this is what users want most
+        if (titleNorm.indexOf(t) !== -1) score += 20;
+        // Good boost for description match — direct content
+        if (descNorm.indexOf(t) !== -1) score += 8;
+        // Moderate boost for keyword match
+        if (keywordsNorm.indexOf(t) !== -1) score += 5;
+        // Base score
         score += 1;
       }
 
-      if (match) scored.push({ item: item, score: score });
+      if (!match) return;
+
+      // Deprioritize changelog version entries — they reference everything
+      // but are rarely what the user is looking for
+      if (pageNorm === 'changelog' || /^v\d/.test(item.title)) {
+        score = Math.floor(score * 0.3);
+      }
+
+      scored.push({ item: item, score: score });
     });
 
     scored.sort(function (a, b) { return b.score - a.score; });
@@ -131,8 +194,58 @@
   }
 
   function renderSearchResults(query) {
-    var results = searchFilter(query);
     activeResultIdx = -1;
+
+    // Empty query — show recent searches + popular suggestions
+    if (!query) {
+      var html = '';
+      var recent = getRecentSearches();
+      var idx = 0;
+
+      if (recent.length > 0) {
+        html += '<div class="search-section-header"><span>Recent</span><button class="search-clear-recent">Clear</button></div>';
+        recent.forEach(function (term) {
+          html += '<div class="search-result search-suggestion" data-query="' + term.replace(/"/g, '&quot;') + '" data-idx="' + idx + '">' +
+            '<div class="search-result-title"><svg class="icon-svg" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 105.64-11.36L1 10"/></svg>' + term + '</div>' +
+          '</div>';
+          idx++;
+        });
+      }
+
+      html += '<div class="search-section-header"><span>Popular</span></div>';
+      popularSearches.forEach(function (p) {
+        html += '<div class="search-result search-suggestion" data-query="' + p.term.replace(/"/g, '&quot;') + '" data-idx="' + idx + '">' +
+          '<div class="search-result-title"><svg class="icon-svg" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>' + p.label + '</div>' +
+          '<div class="search-result-desc">' + p.desc + '</div>' +
+        '</div>';
+        idx++;
+      });
+
+      searchResults.innerHTML = html;
+
+      // Wire up clear recent button
+      var clearBtn = searchResults.querySelector('.search-clear-recent');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          clearRecentSearches();
+          renderSearchResults('');
+        });
+      }
+
+      // Wire up suggestion clicks — fill the search input with the term
+      searchResults.querySelectorAll('.search-suggestion').forEach(function (el) {
+        el.addEventListener('click', function () {
+          var q = this.getAttribute('data-query');
+          searchInput.value = q;
+          renderSearchResults(q);
+        });
+      });
+
+      return;
+    }
+
+    var results = searchFilter(query);
 
     if (results.length === 0) {
       searchResults.innerHTML = '<div class="search-empty">No results for "' + query.replace(/</g, '&lt;') + '"</div>';
@@ -171,11 +284,36 @@
   searchOverlay.addEventListener('click', closeSearch);
   searchCloseBtn.addEventListener('click', closeSearch);
 
+  // Close search when clicking a result + save the search term
+  searchResults.addEventListener('click', function (e) {
+    var link = e.target.closest('a.search-result');
+    if (link) {
+      var q = searchInput.value.trim();
+      if (q) saveRecentSearch(q);
+      closeSearch();
+    }
+  });
+
   searchInput.addEventListener('input', function () {
     renderSearchResults(this.value.trim());
   });
 
-  searchModal.addEventListener('keydown', function (e) {
+  // All keyboard handling in one document-level listener
+  document.addEventListener('keydown', function (e) {
+    // Ctrl+K — toggle search
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      if (searchModal.classList.contains('active')) {
+        closeSearch();
+      } else {
+        openSearch();
+      }
+      return;
+    }
+
+    // Everything below only when search is open
+    if (!searchModal.classList.contains('active')) return;
+
     var items = searchResults.querySelectorAll('.search-result');
     var count = items.length;
 
@@ -191,23 +329,19 @@
       e.preventDefault();
       var target = activeResultIdx >= 0 ? items[activeResultIdx] : items[0];
       if (target) {
-        closeSearch();
-        window.location.href = target.getAttribute('href');
+        // If it's a suggestion (recent/popular), fill the input instead
+        if (target.classList.contains('search-suggestion')) {
+          searchInput.value = target.getAttribute('data-query');
+          renderSearchResults(searchInput.value);
+        } else {
+          var term = searchInput.value.trim();
+          if (term) saveRecentSearch(term);
+          closeSearch();
+          window.location.href = target.getAttribute('href');
+        }
       }
     } else if (e.key === 'Escape') {
       closeSearch();
-    }
-  });
-
-  // Ctrl+K global shortcut
-  document.addEventListener('keydown', function (e) {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-      e.preventDefault();
-      if (searchModal.classList.contains('active')) {
-        closeSearch();
-      } else {
-        openSearch();
-      }
     }
   });
 
@@ -341,27 +475,57 @@
     });
   });
 
-  var revealObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+  // ── Scroll velocity tracking ──
+  var lastScrollY = window.scrollY;
+  var scrollSpeed = 0;
+  var fastScrolling = false;
+  var fastScrollTimer = null;
+
+  function trackScrollSpeed() {
+    var currentY = window.scrollY;
+    scrollSpeed = Math.abs(currentY - lastScrollY);
+    lastScrollY = currentY;
+
+    // Fast scroll threshold: if moving >120px per frame, skip transitions
+    if (scrollSpeed > 120) {
+      if (!fastScrolling) {
+        fastScrolling = true;
+        document.body.classList.add('fast-scroll');
+      }
+      // Reset the cooldown timer on each fast frame
+      clearTimeout(fastScrollTimer);
+      fastScrollTimer = setTimeout(function () {
+        fastScrolling = false;
+        document.body.classList.remove('fast-scroll');
+      }, 80);
+    }
+  }
+
+  // Scroll-based reveal with hysteresis — different thresholds for
+  // entering vs leaving prevents edge flickering while allowing
+  // smooth bidirectional in/out animations on every scroll.
+  function updateRevealElements() {
+    trackScrollSpeed();
+    var viewH = window.innerHeight;
+    for (var i = 0; i < revealElements.length; i++) {
+      var el = revealElements[i];
+      var rect = el.getBoundingClientRect();
+      var isVisible = el.classList.contains('visible');
+
+      if (!isVisible) {
+        // ENTER: element's top enters the bottom 90% of viewport
+        if (rect.top < viewH - 40 && rect.bottom > 60) {
+          el.classList.add('visible');
+        }
       } else {
-        // Only remove when element is well outside viewport to prevent
-        // flickering at the edge boundary
-        var rect = entry.boundingClientRect;
-        if (rect.bottom < -100 || rect.top > window.innerHeight + 100) {
-          entry.target.classList.remove('visible');
+        // EXIT: only when element is well outside viewport
+        // Large gap between enter/exit thresholds = no flicker
+        if (rect.bottom < -150 || rect.top > viewH + 150) {
+          el.classList.remove('visible');
         }
       }
-    });
-  }, {
-    threshold: 0.08,
-    rootMargin: '50px 0px -40px 0px'
-  });
-
-  revealElements.forEach(function (el) {
-    revealObserver.observe(el);
-  });
+    }
+  }
 
   // ──── Ripple Effect on Interactive Elements ────
   function createRipple(e) {
@@ -502,6 +666,7 @@
         updateProgress();
         updateBackToTop();
         updateActiveSection();
+        updateRevealElements();
         ticking = false;
       });
       ticking = true;
@@ -512,6 +677,7 @@
   updateProgress();
   updateBackToTop();
   updateActiveSection();
+  updateRevealElements();
 
   // ──── Handle Hash on Load ────
   if (window.location.hash) {
