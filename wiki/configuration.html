@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="favo.png">
+  <title>Configuration — LumenSmith Wiki</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ═══ Header ═══ -->
+  <header class="site-header">
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <svg class="icon-svg" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="https://cdn.modrinth.com/data/B3BY6f3D/94a38963d6765730594aa68eed4b2196b29d982b_96.webp" alt="LumenSmith">
+      LumenSmith
+      <span class="version">v0.1.4</span>
+    </a>
+    <nav class="header-right">
+      <a href="https://modrinth.com/plugin/lumensmith" target="_blank" class="header-link">
+        <svg class="icon-svg" viewBox="0 0 600 600"><g fill="currentColor"><path d="m29 424.4 188.2-112.95-17.15-45.48 53.75-55.21 67.93-14.64 19.67 24.21-31.32 31.72-27.3 8.6-19.52 20.05 9.56 26.6 19.4 20.6 27.36-7.28 19.47-21.38 42.51-13.47 12.67 28.5-43.87 53.78-73.5 23.27-32.97-36.7L55.06 467.94C46.1 456.41 35.67 440.08 29 424.4Zm543.03-230.25-149.5 40.32c8.24 21.92 10.95 34.8 13.23 49l149.23-40.26c-2.38-15.94-6.65-32.17-12.96-49.06Z"/><path d="M51.28 316.13c10.59 125 115.54 223.3 243.27 223.3 96.51 0 180.02-56.12 219.63-137.46l48.61 16.83c-46.78 101.34-149.35 171.75-268.24 171.75C138.6 590.55 10.71 469.38 0 316.13h51.28ZM.78 265.24C15.86 116.36 141.73 0 294.56 0c162.97 0 295.28 132.31 295.28 295.28 0 26.14-3.4 51.49-9.8 75.63l-48.48-16.78a244.28 244.28 0 0 0 7.15-58.85c0-134.75-109.4-244.15-244.15-244.15-124.58 0-227.49 93.5-242.32 214.11H.8Z"/><path d="M293.77 153.17c-78.49.07-142.2 63.83-142.2 142.34 0 78.56 63.79 142.34 142.35 142.34 3.98 0 7.93-.16 11.83-.49l14.22 49.76a194.65 194.65 0 0 1-26.05 1.74c-106.72 0-193.36-86.64-193.36-193.35 0-106.72 86.64-193.35 193.36-193.35 2.64 0 5.28.05 7.9.16l-8.05 50.85Zm58.2-42.13c78.39 24.67 135.3 97.98 135.3 184.47 0 80.07-48.77 148.83-118.2 178.18l-14.17-49.55c48.08-22.85 81.36-71.89 81.36-128.63 0-60.99-38.44-113.07-92.39-133.32l8.1-51.15Z"/></g></svg>
+        Modrinth
+      </a>
+      <a href="https://github.com/nionx01/LumenSmith" target="_blank" class="header-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+    </nav>
+  </header>
+  <div class="sidebar-overlay"></div>
+
+  <!-- ═══ Sidebar ═══ -->
+  <nav class="sidebar">
+    <div class="sidebar-section">
+      <h3>Getting Started</h3>
+      <a href="index.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a href="commands.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Commands
+      </a>
+      <a href="permissions.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Permissions
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <h3>Configuration</h3>
+      <a href="configuration.html" class="nav-link active">
+        <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Config Guide
+      </a>
+      <a href="recipes.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Recipe Types
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <h3>Updates</h3>
+      <a href="changelog.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Changelog
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <h3>On This Page</h3>
+      <div class="sidebar-sub">
+        <a href="#global">Global Settings</a>
+        <a href="#world-filter">World Filter</a>
+        <a href="#blocked">Blocked Outputs</a>
+        <a href="#deny-message">Deny Message</a>
+        <a href="#custom-recipes">Custom Recipes</a>
+        <a href="#full-example">Full Example</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ Main Content ═══ -->
+  <main class="main">
+    <div class="page-header">
+      <h1>
+        <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Configuration Guide
+      </h1>
+      <p class="subtitle">Complete reference for <code>plugins/LumenSmith/config.yml</code>.</p>
+    </div>
+
+    <!-- Global Settings -->
+    <h2 id="global">Global Settings</h2>
+    <pre><code>update_checker: true
+cooldown_storage: file</code></pre>
+
+    <table>
+      <thead><tr><th>Key</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>update_checker</code></td>
+          <td>boolean</td>
+          <td><code>true</code></td>
+          <td>Check for new versions on startup</td>
+        </tr>
+        <tr>
+          <td><code>cooldown_storage</code></td>
+          <td>string</td>
+          <td><code>"file"</code></td>
+          <td><code>"file"</code> = persistent across restarts, <code>"session"</code> = memory-only (resets on restart)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- World Filter -->
+    <h2 id="world-filter">World Filter</h2>
+    <p>Control which worlds LumenSmith's rules apply in.</p>
+    <pre><code>world_filter:
+  whitelistworldoff: true
+  worlds:
+    - world
+    - world_nether
+    - world_the_end</code></pre>
+
+    <table>
+      <thead><tr><th>Key</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>whitelistworldoff</code></td>
+          <td>boolean</td>
+          <td><code>true</code></td>
+          <td><code>true</code> = features active in ALL worlds. <code>false</code> = only in listed worlds.</td>
+        </tr>
+        <tr>
+          <td><code>worlds</code></td>
+          <td>list</td>
+          <td>&mdash;</td>
+          <td>World names where rules apply (only used when <code>whitelistworldoff: false</code>)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box tip">
+      <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span>Most servers should keep <code>whitelistworldoff: true</code> to apply rules everywhere. Only change this if you need per-world control.</span>
+    </div>
+
+    <!-- Blocked Outputs -->
+    <h2 id="blocked">Blocked Outputs</h2>
+    <p>
+      Any material listed under <code>remove_by_output</code> will be completely uncraftable.
+      The recipe book shows no output, clicks are blocked, and ingredients are not consumed.
+    </p>
+    <pre><code>remove_by_output:
+  - TNT
+  - TNT_MINECART
+  # - ENDER_CHEST
+  # - TRIDENT</code></pre>
+
+    <div class="info-box note">
+      <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <span>Material names use Bukkit's Material enum. See the <a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html" target="_blank">Spigot JavaDocs</a> for a complete list.</span>
+    </div>
+
+    <!-- Deny Message -->
+    <h2 id="deny-message">Deny Message</h2>
+    <p>Shown when a player tries to craft a blocked output. Supports color codes and the <code>%item%</code> placeholder.</p>
+    <pre><code>deny_message: '&amp;cCrafting of &amp;e%item% &amp;cis disabled on this server.'</code></pre>
+
+    <!-- Custom Recipes -->
+    <h2 id="custom-recipes">Custom Recipes</h2>
+    <p>Each recipe is an entry under the <code>custom_recipes</code> list. Here are all available fields:</p>
+
+    <h3>Required Fields</h3>
+    <table>
+      <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>key</code></td><td>string</td><td>Unique recipe ID (letters, numbers, underscores only)</td></tr>
+        <tr><td><code>type</code></td><td>string</td><td>Recipe type (see <a href="recipes.html">Recipe Types</a>)</td></tr>
+        <tr><td><code>result</code></td><td>object</td><td>The output item (see below)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Result Object</h3>
+    <table>
+      <thead><tr><th>Field</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>item</code></td><td>string</td><td>&mdash;</td><td>Material name (required)</td></tr>
+        <tr><td><code>amount</code></td><td>int</td><td>1</td><td>Output amount (1&ndash;64)</td></tr>
+        <tr><td><code>name</code></td><td>string</td><td>&mdash;</td><td>Custom display name (supports <code>&amp;</code> color codes)</td></tr>
+        <tr><td><code>lore</code></td><td>list</td><td>&mdash;</td><td>Lore lines (supports <code>&amp;</code> color codes)</td></tr>
+        <tr><td><code>enchantments</code></td><td>list</td><td>&mdash;</td><td>Enchantments in <code>"NAME:LEVEL"</code> format</td></tr>
+        <tr><td><code>custom_model_data</code></td><td>int</td><td>&mdash;</td><td>Custom model data for resource packs</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Optional Fields</h3>
+    <table>
+      <thead><tr><th>Field</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>auto_unlock_on</code></td><td>list</td><td>&mdash;</td><td>Materials that trigger recipe book unlock</td></tr>
+        <tr><td><code>replace_existing</code></td><td>boolean</td><td><code>true</code></td><td>Replace conflicting vanilla recipes</td></tr>
+        <tr><td><code>permission</code></td><td>string</td><td>&mdash;</td><td>Permission required to craft</td></tr>
+        <tr><td><code>permission_deny_message</code></td><td>string</td><td>&mdash;</td><td>Message shown when permission is missing</td></tr>
+        <tr><td><code>cooldown</code></td><td>int</td><td>&mdash;</td><td>Seconds between crafts (per-player)</td></tr>
+        <tr><td><code>max_crafts</code></td><td>int</td><td>&mdash;</td><td>Lifetime craft limit (per-player)</td></tr>
+        <tr><td><code>cooldown_message</code></td><td>string</td><td>&mdash;</td><td>Message on cooldown (<code>%remaining%</code> placeholder)</td></tr>
+        <tr><td><code>max_crafts_message</code></td><td>string</td><td>&mdash;</td><td>Message when limit is reached</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Effects (Optional)</h3>
+    <p>Play a sound and/or particle effect when the recipe is successfully crafted.</p>
+    <pre><code>effects:
+  sound: "ENTITY_PLAYER_LEVELUP"
+  sound_volume: 1.0
+  sound_pitch: 1.2
+  particle: "ENCHANT"
+  particle_count: 50</code></pre>
+
+    <table>
+      <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>sound</code></td><td>string</td><td>Bukkit Sound enum name</td></tr>
+        <tr><td><code>sound_volume</code></td><td>float</td><td>Volume (0.0 &ndash; 1.0)</td></tr>
+        <tr><td><code>sound_pitch</code></td><td>float</td><td>Pitch (0.5 &ndash; 2.0)</td></tr>
+        <tr><td><code>particle</code></td><td>string</td><td>Bukkit Particle enum name</td></tr>
+        <tr><td><code>particle_count</code></td><td>int</td><td>Number of particles</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Full Example -->
+    <h2 id="full-example">Full Example Config</h2>
+    <pre><code>update_checker: true
+cooldown_storage: file
+
+world_filter:
+  whitelistworldoff: true
+  worlds:
+    - world
+
+remove_by_output:
+  - TNT
+  - TNT_MINECART
+
+custom_recipes:
+  - key: "excalibur"
+    type: "shaped"
+    shape: [" D ", " D ", " S "]
+    ingredients:
+      D: "DIAMOND"
+      S: "STICK"
+    result:
+      item: "DIAMOND_SWORD"
+      amount: 1
+      name: "&amp;6Excalibur"
+      lore:
+        - "&amp;7A blade of legend"
+        - "&amp;5+10 Attack Damage"
+      enchantments:
+        - "SHARPNESS:5"
+        - "UNBREAKING:3"
+        - "FIRE_ASPECT:2"
+      custom_model_data: 1001
+    permission: "lumensmith.craft.excalibur"
+    permission_deny_message: "&amp;cYou need VIP rank to forge Excalibur!"
+    cooldown: 3600
+    max_crafts: 3
+    cooldown_message: "&amp;cExcalibur needs &amp;e%remaining%s &amp;cto recharge."
+    max_crafts_message: "&amp;cYou have forged all the Excaliburs fate allows."
+    effects:
+      sound: "ENTITY_PLAYER_LEVELUP"
+      sound_volume: 1.0
+      sound_pitch: 1.2
+      particle: "ENCHANT"
+      particle_count: 50
+    auto_unlock_on: ["DIAMOND"]
+
+deny_message: '&amp;cCrafting of &amp;e%item% &amp;cis disabled on this server.'</code></pre>
+
+    <footer class="site-footer">
+      &copy; 2025 Benjamin Juh&aacute;sz (NionX) &mdash; All Rights Reserved
+    </footer>
+  </main>
+
+  <script src="js/wiki.js" defer></script>
+</body>
+</html>

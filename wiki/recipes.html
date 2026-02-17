@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="favo.png">
+  <title>Recipe Types — LumenSmith Wiki</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ═══ Header ═══ -->
+  <header class="site-header">
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <svg class="icon-svg" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="https://cdn.modrinth.com/data/B3BY6f3D/94a38963d6765730594aa68eed4b2196b29d982b_96.webp" alt="LumenSmith">
+      LumenSmith
+      <span class="version">v0.1.4</span>
+    </a>
+    <nav class="header-right">
+      <a href="https://modrinth.com/plugin/lumensmith" target="_blank" class="header-link">
+        <svg class="icon-svg" viewBox="0 0 600 600"><g fill="currentColor"><path d="m29 424.4 188.2-112.95-17.15-45.48 53.75-55.21 67.93-14.64 19.67 24.21-31.32 31.72-27.3 8.6-19.52 20.05 9.56 26.6 19.4 20.6 27.36-7.28 19.47-21.38 42.51-13.47 12.67 28.5-43.87 53.78-73.5 23.27-32.97-36.7L55.06 467.94C46.1 456.41 35.67 440.08 29 424.4Zm543.03-230.25-149.5 40.32c8.24 21.92 10.95 34.8 13.23 49l149.23-40.26c-2.38-15.94-6.65-32.17-12.96-49.06Z"/><path d="M51.28 316.13c10.59 125 115.54 223.3 243.27 223.3 96.51 0 180.02-56.12 219.63-137.46l48.61 16.83c-46.78 101.34-149.35 171.75-268.24 171.75C138.6 590.55 10.71 469.38 0 316.13h51.28ZM.78 265.24C15.86 116.36 141.73 0 294.56 0c162.97 0 295.28 132.31 295.28 295.28 0 26.14-3.4 51.49-9.8 75.63l-48.48-16.78a244.28 244.28 0 0 0 7.15-58.85c0-134.75-109.4-244.15-244.15-244.15-124.58 0-227.49 93.5-242.32 214.11H.8Z"/><path d="M293.77 153.17c-78.49.07-142.2 63.83-142.2 142.34 0 78.56 63.79 142.34 142.35 142.34 3.98 0 7.93-.16 11.83-.49l14.22 49.76a194.65 194.65 0 0 1-26.05 1.74c-106.72 0-193.36-86.64-193.36-193.35 0-106.72 86.64-193.35 193.36-193.35 2.64 0 5.28.05 7.9.16l-8.05 50.85Zm58.2-42.13c78.39 24.67 135.3 97.98 135.3 184.47 0 80.07-48.77 148.83-118.2 178.18l-14.17-49.55c48.08-22.85 81.36-71.89 81.36-128.63 0-60.99-38.44-113.07-92.39-133.32l8.1-51.15Z"/></g></svg>
+        Modrinth
+      </a>
+      <a href="https://github.com/nionx01/LumenSmith" target="_blank" class="header-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+    </nav>
+  </header>
+  <div class="sidebar-overlay"></div>
+
+  <!-- ═══ Sidebar ═══ -->
+  <nav class="sidebar">
+    <div class="sidebar-section">
+      <h3>Getting Started</h3>
+      <a href="index.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a href="commands.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Commands
+      </a>
+      <a href="permissions.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Permissions
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <h3>Configuration</h3>
+      <a href="configuration.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Config Guide
+      </a>
+      <a href="recipes.html" class="nav-link active">
+        <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Recipe Types
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <h3>Updates</h3>
+      <a href="changelog.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Changelog
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <h3>On This Page</h3>
+      <div class="sidebar-sub">
+        <a href="#overview">Overview</a>
+        <a href="#shaped">Shaped</a>
+        <a href="#shapeless">Shapeless</a>
+        <a href="#furnace">Furnace</a>
+        <a href="#blasting">Blasting</a>
+        <a href="#smoking">Smoking</a>
+        <a href="#campfire">Campfire</a>
+        <a href="#fuel">Fuel Restrictions</a>
+        <a href="#stonecutting">Stonecutting</a>
+        <a href="#smithing">Smithing</a>
+        <a href="#adjacent-pair">Adjacent Pair</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ Main Content ═══ -->
+  <main class="main">
+    <div class="page-header">
+      <h1>
+        <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Recipe Types
+      </h1>
+      <p class="subtitle">LumenSmith supports 9 different recipe types covering every crafting station in Minecraft.</p>
+    </div>
+
+    <!-- Overview Table -->
+    <h2 id="overview">Overview</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Crafting Station</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>shaped</code></td><td>Crafting Table</td><td>3x3 grid with specific item layout</td></tr>
+        <tr><td><code>shapeless</code></td><td>Crafting Table</td><td>Any arrangement, up to 9 ingredients</td></tr>
+        <tr><td><code>furnace</code></td><td>Furnace</td><td>Standard furnace smelting</td></tr>
+        <tr><td><code>blasting</code></td><td>Blast Furnace</td><td>Blast furnace smelting (2x speed)</td></tr>
+        <tr><td><code>smoking</code></td><td>Smoker</td><td>Smoker cooking (2x speed)</td></tr>
+        <tr><td><code>campfire</code></td><td>Campfire</td><td>Campfire cooking (slow, no fuel)</td></tr>
+        <tr><td><code>stonecutting</code></td><td>Stonecutter</td><td>Single input, one output</td></tr>
+        <tr><td><code>smithing_transform</code></td><td>Smithing Table</td><td>Template + base + addition</td></tr>
+        <tr><td><code>adjacent_pair</code></td><td>Crafting Table</td><td>Two items placed side by side</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ───── SHAPED ───── -->
+    <h2 id="shaped">Shaped Recipe</h2>
+    <p>
+      A shaped recipe uses a 3x3 crafting grid where each slot maps to a specific ingredient.
+      The <code>shape</code> field defines the pattern using letters, and the <code>ingredients</code>
+      map assigns materials to each letter.
+    </p>
+    <pre><code>- key: "ender_eye_bundle"
+  type: "shaped"
+  shape:
+    - "ABC"
+    - "DEF"
+    - "GHI"
+  ingredients:
+    A: "ECHO_SHARD"
+    B: "PRISMARINE_CRYSTALS"
+    C: "BLAZE_POWDER"
+    D: "RESIN_CLUMP"
+    E: "ENDER_PEARL"
+    F: "NETHERITE_UPGRADE_SMITHING_TEMPLATE"
+    G: "HEART_OF_THE_SEA"
+    H: "WIND_CHARGE"
+    I: "TOTEM_OF_UNDYING"
+  result:
+    item: "ENDER_EYE"
+    amount: 12
+  auto_unlock_on: ["ENDER_PEARL"]</code></pre>
+
+    <div class="info-box tip">
+      <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span>Use a space character (<code>" "</code>) in the shape to leave a slot empty. Example: <code>[" D ", " D ", " S "]</code></span>
+    </div>
+
+    <!-- ───── SHAPELESS ───── -->
+    <h2 id="shapeless">Shapeless Recipe</h2>
+    <p>
+      A shapeless recipe doesn't care about arrangement. Players can place the ingredients
+      in any slot. Supports up to 9 ingredients.
+    </p>
+    <pre><code>- key: "cheap_torch"
+  type: "shapeless"
+  ingredients: ["STICK", "COAL"]
+  result:
+    item: "TORCH"
+    amount: 8
+  auto_unlock_on: ["COAL", "CHARCOAL"]</code></pre>
+
+    <!-- ───── FURNACE ───── -->
+    <h2 id="furnace">Furnace Recipe</h2>
+    <p>Standard furnace smelting recipe with configurable experience and cooking time.</p>
+    <pre><code>- key: "smelt_rotten_flesh"
+  type: "furnace"
+  input: "ROTTEN_FLESH"
+  experience: 0.35
+  cooking_time: 200          # ticks (200 = 10 seconds)
+  result:
+    item: "LEATHER"
+    amount: 1
+  auto_unlock_on: ["ROTTEN_FLESH"]</code></pre>
+
+    <h3>Cooking time reference</h3>
+    <table>
+      <thead><tr><th>Ticks</th><th>Seconds</th><th>Typical use</th></tr></thead>
+      <tbody>
+        <tr><td>100</td><td>5s</td><td>Quick smelt</td></tr>
+        <tr><td>200</td><td>10s</td><td>Standard (vanilla default)</td></tr>
+        <tr><td>600</td><td>30s</td><td>Campfire cooking (vanilla)</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ───── BLASTING ───── -->
+    <h2 id="blasting">Blasting Recipe</h2>
+    <p>Blast furnace recipe. Works the same as furnace but only in a blast furnace (2x speed in vanilla).</p>
+    <pre><code>- key: "blast_raw_iron"
+  type: "blasting"
+  input: "RAW_IRON"
+  experience: 1.0
+  cooking_time: 100
+  result:
+    item: "IRON_INGOT"
+    amount: 2
+    name: "&amp;fRefined Iron"
+  auto_unlock_on: ["RAW_IRON"]</code></pre>
+
+    <!-- ───── SMOKING ───── -->
+    <h2 id="smoking">Smoking Recipe</h2>
+    <p>Smoker recipe for food items. Behaves like furnace but only works in a smoker.</p>
+    <pre><code>- key: "smoke_apple"
+  type: "smoking"
+  input: "APPLE"
+  experience: 2.0
+  cooking_time: 100
+  cooldown: 300                # 5-minute cooldown between crafts
+  result:
+    item: "GOLDEN_APPLE"
+    amount: 1
+    name: "&amp;6Smoked Golden Apple"
+  auto_unlock_on: ["APPLE"]</code></pre>
+
+    <!-- ───── CAMPFIRE ───── -->
+    <h2 id="campfire">Campfire Recipe</h2>
+    <p>Campfire cooking recipe. No fuel required, but typically has a longer cooking time.</p>
+    <pre><code>- key: "campfire_kelp"
+  type: "campfire"
+  input: "KELP"
+  experience: 0.1
+  cooking_time: 600            # 30 seconds
+  result:
+    item: "DRIED_KELP"
+    amount: 1
+  auto_unlock_on: ["KELP"]</code></pre>
+
+    <!-- ───── FUEL RESTRICTION ───── -->
+    <h2 id="fuel">Fuel Restrictions (Cooking Recipes)</h2>
+    <p>
+      For furnace, blasting, and smoking recipes, you can restrict which fuels are allowed.
+      Add the <code>allowed_fuels</code> field to limit fuel types.
+    </p>
+    <pre><code>- key: "obsidian_smelt"
+  type: "blasting"
+  input: "CRYING_OBSIDIAN"
+  experience: 10.0
+  cooking_time: 200
+  <strong>allowed_fuels:</strong>
+    <strong>- LAVA_BUCKET</strong>
+  result:
+    item: "OBSIDIAN"
+    amount: 1</code></pre>
+
+    <div class="info-box note">
+      <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <span>If <code>allowed_fuels</code> is omitted, any valid fuel can be used (vanilla behavior).</span>
+    </div>
+
+    <!-- ───── STONECUTTING ───── -->
+    <h2 id="stonecutting">Stonecutting Recipe</h2>
+    <p>Stonecutter recipe with a single input and output. No cooking time or experience.</p>
+    <pre><code>- key: "cut_stone_bricks"
+  type: "stonecutting"
+  input: "STONE"
+  result:
+    item: "STONE_BRICKS"
+    amount: 2
+  auto_unlock_on: ["STONE"]</code></pre>
+
+    <!-- ───── SMITHING TRANSFORM ───── -->
+    <h2 id="smithing">Smithing Transform Recipe</h2>
+    <p>
+      Smithing table recipe that transforms a base item using a template and an addition material.
+      Requires three inputs: template, base item, and addition.
+    </p>
+    <pre><code>- key: "custom_netherite_pickaxe"
+  type: "smithing_transform"
+  template: "NETHERITE_UPGRADE_SMITHING_TEMPLATE"
+  base: "DIAMOND_PICKAXE"
+  addition: "NETHERITE_INGOT"
+  result:
+    item: "NETHERITE_PICKAXE"
+    amount: 1
+    name: "&amp;4Infernal Pickaxe"
+    lore:
+      - "&amp;7Forged in the depths"
+    enchantments:
+      - "EFFICIENCY:5"
+    custom_model_data: 2001
+  auto_unlock_on: ["NETHERITE_INGOT"]</code></pre>
+
+    <!-- ───── ADJACENT PAIR ───── -->
+    <h2 id="adjacent-pair">Adjacent Pair Recipe</h2>
+    <p>
+      A unique recipe type where two items are placed next to each other in the crafting grid.
+      LumenSmith automatically registers all valid placements.
+    </p>
+    <pre><code>- key: "glowing_ink_sac_craft"
+  type: "adjacent_pair"
+  items:
+    - "GLOWSTONE_DUST"
+    - "INK_SAC"
+  direction: "both"           # horizontal, vertical, or both (default)
+  result:
+    item: "GLOW_INK_SAC"
+    amount: 1
+  auto_unlock_on: ["GLOWSTONE_DUST", "INK_SAC"]</code></pre>
+
+    <h3>Direction options</h3>
+    <table>
+      <thead><tr><th>Value</th><th>Registered placements</th></tr></thead>
+      <tbody>
+        <tr><td><code>horizontal</code></td><td>Side by side (left-right) in all rows</td></tr>
+        <tr><td><code>vertical</code></td><td>Stacked (top-bottom) in all columns</td></tr>
+        <tr><td><code>both</code> (default)</td><td>All horizontal and vertical placements</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box tip">
+      <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span>If both items are the same material, it works as a "double block" recipe (e.g., 2x Cobbled Deepslate = Crying Obsidian).</span>
+    </div>
+
+    <footer class="site-footer">
+      &copy; 2025 Benjamin Juh&aacute;sz (NionX) &mdash; All Rights Reserved
+    </footer>
+  </main>
+
+  <script src="js/wiki.js" defer></script>
+</body>
+</html>
