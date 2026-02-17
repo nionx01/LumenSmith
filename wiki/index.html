@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LumenSmith Wiki — Configurable Crafting for Minecraft (v0.1.4)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ═══ Header ═══ -->
+  <header class="site-header">
+    <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+      <svg class="icon-svg" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="https://cdn.modrinth.com/data/B3BY6f3D/94a38963d6765730594aa68eed4b2196b29d982b_96.webp" alt="LumenSmith">
+      LumenSmith
+      <span class="version">v0.1.4</span>
+    </a>
+    <nav class="header-right">
+      <a href="https://modrinth.com/plugin/lumensmith" target="_blank" class="header-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="m29 424.4 188.2-112.95-17.15-45.48 53.75-55.21 67.93-14.64 19.67 24.21-31.32 31.72-27.3 8.6-19.52 20.05 9.56 26.6 19.4 20.6 27.36-7.28 19.47-21.38 42.51-13.47 12.67 28.5-43.87 53.78-73.5 23.27-32.97-36.7L55.06 467.94C46.1 456.41 35.67 440.08 29 424.4Zm543.03-230.25-149.5 40.32c8.24 21.92 10.95 34.8 13.23 49l149.23-40.26c-2.38-15.94-6.65-32.17-12.96-49.06Z M51.28 316.13c10.59 125 115.54 223.3 243.27 223.3 96.51 0 180.02-56.12 219.63-137.46l48.61 16.83c-46.78 101.34-149.35 171.75-268.24 171.75C138.6 590.55 10.71 469.38 0 316.13h51.28ZM.78 265.24C15.86 116.36 141.73 0 294.56 0c162.97 0 295.28 132.31 295.28 295.28 0 26.14-3.4 51.49-9.8 75.63l-48.48-16.78a244.28 244.28 0 0 0 7.15-58.85c0-134.75-109.4-244.15-244.15-244.15-124.58 0-227.49 93.5-242.32 214.11H.8Z M293.77 153.17c-78.49.07-142.2 63.83-142.2 142.34 0 78.56 63.79 142.34 142.35 142.34 3.98 0 7.93-.16 11.83-.49l14.22 49.76a194.65 194.65 0 0 1-26.05 1.74c-106.72 0-193.36-86.64-193.36-193.35 0-106.72 86.64-193.35 193.36-193.35 2.64 0 5.28.05 7.9.16l-8.05 50.85Zm58.2-42.13c78.39 24.67 135.3 97.98 135.3 184.47 0 80.07-48.77 148.83-118.2 178.18l-14.17-49.55c48.08-22.85 81.36-71.89 81.36-128.63 0-60.99-38.44-113.07-92.39-133.32l8.1-51.15Z"></path></svg>
+        Modrinth
+      </a>
+      <a href="https://github.com/nionx01/LumenSmith" target="_blank" class="header-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+    </nav>
+  </header>
+
+  <!-- ═══ Sidebar ═══ -->
+  <nav class="sidebar">
+    <div class="sidebar-section">
+      <h3>Getting Started</h3>
+      <a href="index.html" class="nav-link active">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a href="commands.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Commands
+      </a>
+      <a href="permissions.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Permissions
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <h3>Configuration</h3>
+      <a href="configuration.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Config Guide
+      </a>
+      <a href="recipes.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Recipe Types
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <h3>Updates</h3>
+      <a href="changelog.html" class="nav-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Changelog
+      </a>
+    </div>
+  </nav>
+
+  <!-- ═══ Main Content ═══ -->
+  <main class="main">
+
+    <!-- Hero -->
+    <div class="hero">
+      <img src="https://cdn.modrinth.com/data/cached_images/e9d096ac6857d987d5080c2a65d40c7510518001.png" alt="LumenSmith Logo" style="max-width:440px; width:100%; margin-bottom:16px;">
+      <p class="tagline">Lightweight, configurable recipe management for Paper / Spigot / Purpur servers</p>
+      <div class="hero-badges">
+        <span class="badge badge-teal">
+          <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 7h10M7 12h10M7 17h6"/></svg>
+          Minecraft 1.21+
+        </span>
+        <span class="badge badge-mint">
+          <svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Paper / Spigot / Purpur
+        </span>
+        <span class="badge badge-cyan">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          v0.1.4
+        </span>
+      </div>
+    </div>
+
+    <!-- What is LumenSmith -->
+    <h2>What is LumenSmith?</h2>
+    <p>
+      <strong>LumenSmith</strong> is a beginner-friendly plugin that lets you <strong>disable</strong>,
+      <strong>replace</strong>, and <strong>create</strong> crafting recipes entirely through an
+      <strong>in-game GUI</strong> or a simple <code>config.yml</code>.
+      No coding, no datapacks &mdash; just open the recipe creator and click.
+    </p>
+
+    <!-- Quick Links -->
+    <div class="quick-links">
+      <a href="commands.html" class="quick-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        <span>Commands</span>
+      </a>
+      <a href="configuration.html" class="quick-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        <span>Configuration</span>
+      </a>
+      <a href="recipes.html" class="quick-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <span>Recipe Types</span>
+      </a>
+      <a href="permissions.html" class="quick-link">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Permissions</span>
+      </a>
+    </div>
+
+    <!-- Features -->
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+        </div>
+        <h3>Block Vanilla Recipes</h3>
+        <p>Prevent items like TNT or Ender Chests from being crafted by adding them to the blocked outputs list.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <h3>9 Recipe Types</h3>
+        <p>Shaped, shapeless, furnace, blasting, smoking, campfire, stonecutting, smithing transform, and adjacent pair.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3>In-Game Recipe Creator</h3>
+        <p>Build recipes visually with <code>/ls create</code>. Click slots, pick items &mdash; no config editing needed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <h3>Edit &amp; Delete In-Game</h3>
+        <p>Browse recipes with <code>/ls recipes</code>, then edit or delete them with a single click.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <h3>Permissions &amp; Cooldowns</h3>
+        <p>Require permissions to craft, set cooldowns, and limit the number of times a recipe can be used.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 019.9-1"/></svg>
+        </div>
+        <h3>Auto-Unlock</h3>
+        <p>Recipes instantly appear in the recipe book when players obtain trigger items.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <h3>World Filter</h3>
+        <p>Enable or disable crafting rules per world. Perfect for multi-world servers.</p>
+      </div>
+      <div class="feature-card">
+        <div class="card-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h3>Ultra-Lightweight</h3>
+        <p>Optimized with O(1) lookups, pre-computed data, and zero per-tick overhead.</p>
+      </div>
+    </div>
+
+    <!-- Quick Start -->
+    <h2>Quick Start</h2>
+    <ol>
+      <li>Download <strong>LumenSmith</strong> and place it in your server's <code>plugins/</code> folder.</li>
+      <li>Start (or restart) your server.</li>
+      <li>Edit <code>plugins/LumenSmith/config.yml</code> or use <code>/ls create &lt;key&gt;</code> in-game.</li>
+      <li>Run <code>/ls reload</code> to apply config changes instantly.</li>
+    </ol>
+
+    <div class="info-box tip">
+      <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span>Use <code>/ls recipes</code> in-game to browse, edit, and delete all custom recipes through a visual GUI.</span>
+    </div>
+
+    <!-- Screenshots -->
+    <h2>Screenshots</h2>
+    <div class="screenshot-grid">
+      <img src="https://cdn.modrinth.com/data/cached_images/c68fe1ef2aa88b6e395de43775d8b4b1776fe8fc.png" alt="Crafting blocked">
+      <img src="https://cdn.modrinth.com/data/cached_images/6ccc78f9734153dc462f7d9f49f998c0334f6927.png" alt="Custom recipe">
+      <img src="https://cdn.modrinth.com/data/cached_images/4a8b4bad8bbd00aa0f93344dbe7121ce71da7303.png" alt="Recipe creator">
+      <img src="https://cdn.modrinth.com/data/cached_images/22be112156459030622398b7fe75132ec3f517c4.png" alt="Recipe browser">
+    </div>
+
+    <!-- Why LumenSmith -->
+    <h2>Why LumenSmith?</h2>
+    <ul>
+      <li>Perfect for <strong>SMP</strong>, <strong>RPG</strong>, or <strong>custom survival</strong> servers</li>
+      <li>100% YAML-based configuration &mdash; no coding required</li>
+      <li>In-game recipe creator &mdash; no need to touch config files</li>
+      <li>Fully reload-safe with <code>/ls reload</code></li>
+      <li>Prevents duplication exploits and crafting abuse</li>
+      <li>Clean console logs and professional structure</li>
+    </ul>
+
+    <footer class="site-footer">
+      &copy; 2025 Benjamin Juh&aacute;sz (NionX) &mdash; All Rights Reserved<br>
+      LumenSmith is not affiliated with Mojang Studios.
+    </footer>
+  </main>
+
+</body>
+</html>
