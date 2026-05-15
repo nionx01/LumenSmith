@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   LumenSmith Wiki — Interactive Enhancements
+   LumenSmith Wiki, Interactive Enhancements
    Scroll animations, anchor links, ripple effects, lightbox, etc.
    ═══════════════════════════════════════════════════════════════ */
 
@@ -13,8 +13,8 @@
     { title: 'What is LumenSmith?', desc: 'Beginner-friendly plugin to disable, replace, and create crafting recipes via GUI or config.yml', url: 'index.html#what-is-lumensmith', page: 'Home', keywords: 'about plugin description what is explain minecraft spigot bukkit paper' },
     { title: 'Key Features', desc: 'Block vanilla recipes, 9 recipe types, in-game creator, permissions, cooldowns, auto-unlock, world filter', url: 'index.html#key-features', page: 'Home', keywords: 'features list capabilities block vanilla 9 types gui creator auto unlock lightweight' },
     { title: 'Quick Start', desc: 'Download, install, edit config.yml or use /ls create, then /ls reload', url: 'index.html#quick-start', page: 'Home', keywords: 'install setup getting started guide download how to begin first steps tutorial' },
-    { title: 'Screenshots', desc: 'Screenshots of LumenSmith in action — recipe browser, config examples, in-game GUI', url: 'index.html#screenshots', page: 'Home', keywords: 'screenshot images preview visual gui look' },
-    { title: 'Why LumenSmith?', desc: 'Lightweight, beginner-friendly, no coding needed — reasons to choose LumenSmith for your server', url: 'index.html#why-lumensmith', page: 'Home', keywords: 'why choose reasons benefits lightweight easy simple no code server' },
+    { title: 'Screenshots', desc: 'Screenshots of LumenSmith in action: recipe browser, config examples, in-game GUI', url: 'index.html#screenshots', page: 'Home', keywords: 'screenshot images preview visual gui look' },
+    { title: 'Why LumenSmith?', desc: 'Lightweight, beginner-friendly, no coding needed. Reasons to choose LumenSmith for your server.', url: 'index.html#why-lumensmith', page: 'Home', keywords: 'why choose reasons benefits lightweight easy simple no code server' },
 
     // ── Commands ──
     { title: 'Commands', desc: 'All LumenSmith commands: /ls help, list, reload, rescan, fixbook, recipes, create, delete', url: 'commands.html', page: 'Getting Started', keywords: '/ls /lumensmith command reference slash all' },
@@ -31,9 +31,9 @@
 
     // ── Permissions ──
     { title: 'Permissions', desc: 'Plugin permissions and per-recipe permission system with LuckPerms examples', url: 'permissions.html', page: 'Getting Started', keywords: 'luckperms permission access control security' },
-    { title: 'Plugin Permissions', desc: 'lumensmith.admin, lumensmith.gui, lumensmith.create — global permission nodes', url: 'permissions.html#plugin-permissions', page: 'Permissions', keywords: 'admin gui create op operator lumensmith.admin lumensmith.gui lumensmith.create node' },
+    { title: 'Plugin Permissions', desc: 'lumensmith.admin, lumensmith.gui, lumensmith.create: the global permission nodes', url: 'permissions.html#plugin-permissions', page: 'Permissions', keywords: 'admin gui create op operator lumensmith.admin lumensmith.gui lumensmith.create node' },
     { title: 'Per-Recipe Permissions', desc: 'Require specific permission to craft individual recipes with custom deny messages', url: 'permissions.html#per-recipe-permissions', page: 'Permissions', keywords: 'craft permission deny message restrict per recipe individual lock gate' },
-    { title: 'Example Permission Setup', desc: 'LuckPerms command examples for admin, VIP, and builder groups — /lp group', url: 'permissions.html#example-setup', page: 'Permissions', keywords: 'luckperms lp group vip builder example setup guide /lp lp group admin permission set' },
+    { title: 'Example Permission Setup', desc: 'LuckPerms command examples for admin, VIP, and builder groups (/lp group ...)', url: 'permissions.html#example-setup', page: 'Permissions', keywords: 'luckperms lp group vip builder example setup guide /lp lp group admin permission set' },
 
     // ── Configuration ──
     { title: 'Config Guide', desc: 'Complete configuration reference: global settings, world filter, blocked outputs, custom recipes', url: 'configuration.html', page: 'Configuration', keywords: 'config.yml yaml settings options configuration reference guide' },
@@ -49,9 +49,9 @@
     { title: 'Full Example Config', desc: 'Complete config.yml example with Excalibur recipe, enchantments, custom model data, effects', url: 'configuration.html#full-example', page: 'Config Guide', keywords: 'example full config excalibur enchantment yaml copy paste template sample' },
 
     // ── Recipe Types ──
-    { title: 'Recipe Types Overview', desc: 'All 9 recipe types: shaped, shapeless, furnace, blasting, smoking, campfire, stonecutting, smithing, adjacent pair', url: 'recipes.html', page: 'Configuration', keywords: 'recipe type crafting smelting all types overview 9 list' },
+    { title: 'Recipe Types Overview', desc: 'All 10 recipe types: shaped, shapeless, furnace, blasting, smoking, campfire, stonecutting, smithing, adjacent pair, brewing', url: 'recipes.html', page: 'Configuration', keywords: 'recipe type crafting smelting all types overview 10 list brewing' },
     { title: 'Shaped Recipe', desc: '3x3 crafting grid recipe with shape pattern and ingredients map', url: 'recipes.html#shaped', page: 'Recipe Types', keywords: 'shaped 3x3 grid pattern craft crafting table shape ingredients map row' },
-    { title: 'Shapeless Recipe', desc: 'Any arrangement recipe — place ingredients in any slots, up to 9 items', url: 'recipes.html#shapeless', page: 'Recipe Types', keywords: 'shapeless any order arrangement no pattern ingredients list' },
+    { title: 'Shapeless Recipe', desc: 'Any arrangement recipe: place ingredients in any slots, up to 9 items', url: 'recipes.html#shapeless', page: 'Recipe Types', keywords: 'shapeless any order arrangement no pattern ingredients list' },
     { title: 'Furnace Recipe', desc: 'Standard furnace smelting with configurable experience and cooking time', url: 'recipes.html#furnace', page: 'Recipe Types', keywords: 'furnace smelt cook experience xp cooking time input output smelting' },
     { title: 'Blasting Recipe', desc: 'Blast furnace smelting at 2x speed for ores and metals', url: 'recipes.html#blasting', page: 'Recipe Types', keywords: 'blast furnace blasting smelt ore metal faster 2x speed' },
     { title: 'Smoking Recipe', desc: 'Smoker cooking for food items at 2x speed', url: 'recipes.html#smoking', page: 'Recipe Types', keywords: 'smoker smoking cook food meat fish 2x speed' },
@@ -62,26 +62,29 @@
     { title: 'Smithing Transform', desc: 'Smithing table recipe: template + base item + addition material for upgrading', url: 'recipes.html#smithing', page: 'Recipe Types', keywords: 'smithing transform netherite upgrade template base addition smithing table armor tools' },
     { title: 'Adjacent Pair Recipe', desc: 'Two items side-by-side in crafting grid. Direction: horizontal, vertical, or both', url: 'recipes.html#adjacent-pair', page: 'Recipe Types', keywords: 'adjacent pair side by side direction horizontal vertical both two items next to adjacent_pair' },
     { title: 'Direction Options', desc: 'Adjacent pair direction: horizontal (left-right), vertical (up-down), or both', url: 'recipes.html#adjacent-pair', page: 'Recipe Types', keywords: 'direction horizontal vertical both left right up down adjacent pair option' },
+    { title: 'Brewing Recipe', desc: 'Brewing-stand recipe: ingredient + bottle → custom potion. Works for any material as ingredient via custom brewing manager.', url: 'recipes.html#brewing', page: 'Recipe Types', keywords: 'brewing potion brew brewing stand splash lingering ingredient bottle potion_type new v0.1.5' },
+    { title: 'Potion Type', desc: 'Set the resulting potion effect: STRENGTH, FIRE_RESISTANCE, SWIFTNESS, LONG_NIGHT_VISION, STRONG_REGENERATION...', url: 'recipes.html#brewing', page: 'Recipe Types', keywords: 'potion_type PotionType effect strength swiftness fire resistance night vision regeneration brewing result' },
 
     // ── Minecraft Items & Materials (common searches) ──
     { title: 'Block TNT Crafting', desc: 'Use remove_by_output to prevent players from crafting TNT or other dangerous items', url: 'configuration.html#blocked', page: 'Config Guide', keywords: 'tnt block disable prevent TNT explosive griefing remove_by_output ENDER_CHEST' },
-    { title: 'Diamond Items', desc: 'Use diamonds in shaped recipes — DIAMOND, DIAMOND_SWORD, DIAMOND_PICKAXE, DIAMOND_BLOCK', url: 'recipes.html#shaped', page: 'Recipe Types', keywords: 'diamond sword pickaxe axe helmet chestplate leggings boots block DIAMOND' },
+    { title: 'Diamond Items', desc: 'Use diamonds in shaped recipes: DIAMOND, DIAMOND_SWORD, DIAMOND_PICKAXE, DIAMOND_BLOCK', url: 'recipes.html#shaped', page: 'Recipe Types', keywords: 'diamond sword pickaxe axe helmet chestplate leggings boots block DIAMOND' },
     { title: 'Netherite Upgrade', desc: 'Create netherite upgrade recipes using smithing transform type with NETHERITE_INGOT', url: 'recipes.html#smithing', page: 'Recipe Types', keywords: 'netherite ingot upgrade smithing NETHERITE_INGOT armor tools NETHERITE_UPGRADE_SMITHING_TEMPLATE' },
 
     // ── Changelog ──
     { title: 'Changelog', desc: 'Version history and release notes for all LumenSmith updates', url: 'changelog.html', page: 'Updates', keywords: 'changelog version update release notes history what changed new' },
-    { title: 'v0.1.4 — Major Update', desc: 'In-game recipe creator, recipe editing/deletion, adjacent pair directions, bug fixes, performance', url: 'changelog.html#v014', page: 'Changelog', keywords: 'v0.1.4 latest creator editor gui new features' },
+    { title: 'v0.1.5: Brewing, Quick Actions & Hardening', desc: 'Brewing recipe type, quick create/delete buttons in browser, real-time auto-unlock, security hardening, Paper 26.x', url: 'changelog.html#v015', page: 'Changelog', keywords: 'v0.1.5 latest brewing potion quick create delete mode blocked outputs unlock triggers categorised creator security' },
+    { title: 'v0.1.4: Major Update', desc: 'In-game recipe creator, recipe editing/deletion, adjacent pair directions, bug fixes, performance', url: 'changelog.html#v014', page: 'Changelog', keywords: 'v0.1.4 creator editor gui adjacent pair' },
     { title: 'v0.1.3', desc: 'Instant recipe unlocks, /ls rescan, world filter improvements', url: 'changelog.html#v013', page: 'Changelog', keywords: 'v0.1.3 auto unlock rescan' },
     { title: 'v0.1.2', desc: 'World filter, adjacent_pair recipe type, /ls fixbook command', url: 'changelog.html#v012', page: 'Changelog', keywords: 'v0.1.2 world filter adjacent fixbook' },
-    { title: 'v0.1.1', desc: 'Full protection for blocked items — prevent clicking, shift-crafting, dragging', url: 'changelog.html#v011', page: 'Changelog', keywords: 'v0.1.1 protection blocked shift click drag' },
-    { title: 'v0.1.0 — Initial Release', desc: 'First release with shaped/shapeless recipes, blocking, auto-unlock, permissions', url: 'changelog.html#v010', page: 'Changelog', keywords: 'v0.1.0 initial first release' },
+    { title: 'v0.1.1', desc: 'Full protection for blocked items, preventing clicks, shift-crafting, and dragging', url: 'changelog.html#v011', page: 'Changelog', keywords: 'v0.1.1 protection blocked shift click drag' },
+    { title: 'v0.1.0: Initial Release', desc: 'First release with shaped/shapeless recipes, blocking, auto-unlock, permissions', url: 'changelog.html#v010', page: 'Changelog', keywords: 'v0.1.0 initial first release' },
 
     // ── Terms of Service ──
     { title: 'Terms of Service', desc: 'Full legal terms, license, warranties, liability, and usage rules for LumenSmith', url: 'terms.html', page: 'Legal', keywords: 'terms of service tos legal rules policy agreement' },
-    { title: 'License & Usage', desc: 'Non-exclusive license to use LumenSmith freely — redistribution and reverse-engineering restrictions', url: 'terms.html#license', page: 'Terms of Service', keywords: 'license usage rights restrictions redistribution decompile reverse engineer' },
-    { title: 'Intellectual Property', desc: 'NionX owns the plugin — users own their custom recipes and configurations', url: 'terms.html#intellectual-property', page: 'Terms of Service', keywords: 'intellectual property ownership copyright content user generated recipes' },
+    { title: 'License & Usage', desc: 'Non-exclusive license to use LumenSmith freely, with redistribution and reverse-engineering restrictions', url: 'terms.html#license', page: 'Terms of Service', keywords: 'license usage rights restrictions redistribution decompile reverse engineer' },
+    { title: 'Intellectual Property', desc: 'NionX owns the plugin; users own their custom recipes and configurations', url: 'terms.html#intellectual-property', page: 'Terms of Service', keywords: 'intellectual property ownership copyright content user generated recipes' },
     { title: 'Disclaimer of Warranties', desc: 'Plugin provided as-is without warranties of merchantability, fitness, or availability', url: 'terms.html#warranties', page: 'Terms of Service', keywords: 'warranty disclaimer as is no guarantee merchantability fitness' },
-    { title: 'Limitation of Liability', desc: 'NionX not liable for data loss, server issues, crashes, or damages — free plugin', url: 'terms.html#liability', page: 'Terms of Service', keywords: 'liability limitation damages data loss server crash not responsible' },
+    { title: 'Limitation of Liability', desc: 'NionX not liable for data loss, server issues, crashes, or damages (free plugin)', url: 'terms.html#liability', page: 'Terms of Service', keywords: 'liability limitation damages data loss server crash not responsible' },
     { title: 'Mojang / Microsoft Disclaimer', desc: 'LumenSmith is not affiliated with, endorsed by, or sponsored by Mojang Studios or Microsoft', url: 'terms.html#mojang', page: 'Terms of Service', keywords: 'mojang microsoft minecraft not affiliated independent community disclaimer' }
   ];
 
@@ -193,11 +196,11 @@
   // Fuzzy match: does `needle` appear in `haystack` allowing up to 1 typo per 4 chars?
   // Returns a quality score (higher = better match) or 0 for no match.
   function fuzzyMatch(needle, haystack) {
-    // Exact substring — best possible
+    // Exact substring: best possible
     if (haystack.indexOf(needle) !== -1) return 3;
     // Short queries: require exact match (fuzzy on 1-2 chars gives false positives)
     if (needle.length < 3) return 0;
-    // Prefix match — any word in haystack starts with needle
+    // Prefix match: any word in haystack starts with needle
     var words = haystack.split(/\s+/);
     for (var w = 0; w < words.length; w++) {
       if (words[w].indexOf(needle) === 0) return 2.5;
@@ -257,7 +260,7 @@
     return false;
   }
 
-  // Pre-normalize search index once at load — avoids re-normalizing on every keystroke
+  // Pre-normalize search index once at load: avoids re-normalizing on every keystroke
   var searchCache = searchIndex.map(function (item) {
     return {
       item: item,
@@ -309,7 +312,7 @@
       // Boost exact title match (full query found in title)
       if (titleNorm.indexOf(q) !== -1) score += 30;
 
-      // Deprioritize changelog version entries — they reference everything
+      // Deprioritize changelog version entries; they reference everything
       // but are rarely what the user is looking for
       if (pageNorm === 'changelog' || /^v\d/.test(item.title)) {
         score = Math.floor(score * 0.3);
@@ -325,7 +328,7 @@
   function renderSearchResults(query) {
     activeResultIdx = -1;
 
-    // Empty query — show recent searches + popular suggestions
+    // Empty query: show recent searches + popular suggestions
     if (!query) {
       var html = '';
       var recent = getRecentSearches();
@@ -362,7 +365,7 @@
         });
       }
 
-      // Wire up suggestion clicks — fill the search input with the term
+      // Wire up suggestion clicks: fill the search input with the term
       searchResults.querySelectorAll('.search-suggestion').forEach(function (el) {
         el.addEventListener('click', function () {
           var q = this.getAttribute('data-query');
@@ -429,7 +432,7 @@
 
   // All keyboard handling in one document-level listener
   document.addEventListener('keydown', function (e) {
-    // Ctrl+K — toggle search
+    // Ctrl+K toggles search
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
       if (searchModal.classList.contains('active')) {
@@ -688,7 +691,7 @@
     }
   }
 
-  // Scroll-based reveal with hysteresis — different thresholds for
+  // Scroll-based reveal with hysteresis: different thresholds for
   // entering vs leaving prevents edge flickering while allowing
   // smooth bidirectional in/out animations on every scroll.
   function updateRevealElements() {
@@ -737,7 +740,7 @@
     el.addEventListener('click', createRipple);
   });
 
-  // ──── Image Protection — prevent drag & right-click copy ────
+  // ──── Image Protection: prevent drag & right-click copy ────
   document.querySelectorAll('img').forEach(function (img) {
     img.setAttribute('draggable', 'false');
     img.addEventListener('dragstart', function (e) { e.preventDefault(); });

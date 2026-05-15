@@ -6,7 +6,7 @@
   <link rel="icon" type="image/x-icon" href="favo.png">
   <link rel="preconnect" href="https://cdn.modrinth.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.modrinth.com">
-  <title>Recipe Types — LumenSmith Wiki</title>
+  <title>Recipe Types | LumenSmith Wiki</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
     <a href="index.html" class="logo">
       <img src="https://cdn.modrinth.com/data/B3BY6f3D/94a38963d6765730594aa68eed4b2196b29d982b_96.webp" alt="LumenSmith">
       LumenSmith
-      <span class="version">v0.1.4</span>
+      <span class="version">v0.1.5</span>
     </a>
     <nav class="header-right">
       <a href="https://modrinth.com/plugin/lumensmith" target="_blank" class="header-link">
@@ -80,6 +80,7 @@
       <h3>On This Page</h3>
       <div class="sidebar-sub">
         <a href="#overview">Overview</a>
+        <a href="#auto-unlock">Auto-Unlock</a>
         <a href="#shaped">Shaped</a>
         <a href="#shapeless">Shapeless</a>
         <a href="#furnace">Furnace</a>
@@ -90,6 +91,7 @@
         <a href="#stonecutting">Stonecutting</a>
         <a href="#smithing">Smithing</a>
         <a href="#adjacent-pair">Adjacent Pair</a>
+        <a href="#brewing">Brewing</a>
       </div>
     </div>
   </nav>
@@ -101,7 +103,7 @@
         <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         Recipe Types
       </h1>
-      <p class="subtitle">LumenSmith supports 9 different recipe types covering every crafting station in Minecraft.</p>
+      <p class="subtitle">LumenSmith supports 10 different recipe types covering every crafting station in Minecraft, including the brewing stand.</p>
     </div>
 
     <!-- Overview Table -->
@@ -124,8 +126,80 @@
         <tr><td><code>stonecutting</code></td><td>Stonecutter</td><td>Single input, one output</td></tr>
         <tr><td><code>smithing_transform</code></td><td>Smithing Table</td><td>Template + base + addition</td></tr>
         <tr><td><code>adjacent_pair</code></td><td>Crafting Table</td><td>Two items placed side by side</td></tr>
+        <tr><td><code>brewing</code></td><td>Brewing Stand</td><td>Ingredient + bottle &rarr; custom potion <span style="color:var(--mint);font-weight:600;">NEW v0.1.5</span></td></tr>
       </tbody>
     </table>
+
+    <!-- ───── AUTO-UNLOCK ───── -->
+    <h2 id="auto-unlock">Auto-Unlock (<code>auto_unlock_on</code>)</h2>
+    <p>
+      Every recipe type below supports the <code>auto_unlock_on</code> field, which controls
+      when the recipe appears in a player's recipe book. LumenSmith watches every way a
+      player can acquire an item; the moment a trigger material lands in their inventory,
+      the recipe shows up. No relog, no <code>/ls reload</code> needed.
+    </p>
+
+    <h3>Default behaviour (no field set)</h3>
+    <p>
+      If you omit <code>auto_unlock_on</code>, the plugin auto-derives the trigger list
+      from the recipe's ingredients. The recipe appears as soon as the player obtains
+      any ingredient it needs. This is the right default for 90% of recipes.
+    </p>
+
+    <h3>Custom trigger list</h3>
+    <p>
+      Add a YAML list to hide a recipe behind a different milestone. The player only sees
+      it after picking up one of the materials you list. Mix as many trigger materials
+      as you like.
+    </p>
+    <pre><code>- key: "ancient_blade"
+  type: "shaped"
+  shape:
+    - " D "
+    - " D "
+    - " S "
+  ingredients:
+    D: "DIAMOND"
+    S: "STICK"
+  result:
+    item: "DIAMOND_SWORD"
+    name: "&amp;6Ancient Blade"
+  <strong>auto_unlock_on:</strong>     # ignore ingredients, gate on something rarer
+    <strong>- ANCIENT_DEBRIS</strong>
+    <strong>- NETHERITE_SCRAP</strong></code></pre>
+
+    <h3>What counts as "obtaining" a trigger</h3>
+    <p>The plugin unlocks the recipe instantly (same tick) for all of these paths:</p>
+    <ul>
+      <li>Picking up an item from the ground (<code>EntityPickupItemEvent</code>)</li>
+      <li>Crafting an item, including shift-click and number-key crafts</li>
+      <li>Shift-clicking out of chests, shulkers, ender chests, villager trades, furnace outputs, brewing stands</li>
+      <li>Hopper output and any other inventory click that moves a matching material into the player's inventory</li>
+      <li><code>/give</code> and <code>/minecraft:give</code> (both player-issued and console-issued)</li>
+      <li>Joining the server (full inventory rescan for every player on join)</li>
+      <li>Items the player is holding on the cursor at the moment of the check</li>
+    </ul>
+
+    <div class="info-box tip">
+      <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span>If a recipe ever feels out of sync (rare, but it happens after manual config edits), run <code>/ls fixbook</code>. It re-discovers every LumenSmith recipe for every online player.</span>
+    </div>
+
+    <h3>Picking triggers from the GUI</h3>
+    <p>
+      The Knowledge Book button in the in-game editor (slot 40) lets you skip YAML
+      entirely. Click it, then click materials in your inventory to add them as triggers.
+      Right-click to clear the list and fall back to the auto-from-ingredients default.
+      See the full GUI walkthrough in <a href="commands.html#using-the-gui">Using the In-Game GUI</a>.
+    </p>
+
+    <h3>Adjacent-pair recipes</h3>
+    <p>
+      Adjacent-pair recipes register multiple internal placements (one per rotation).
+      All placements share a recipe group, so when one is unlocked the recipe book shows
+      all rotations as a single cyclable entry. You don't need to do anything special;
+      the auto-unlock works the same way as for any other type.
+    </p>
 
     <!-- ───── SHAPED ───── -->
     <h2 id="shaped">Shaped Recipe</h2>
@@ -326,8 +400,65 @@
       <span>If both items are the same material, it works as a "double block" recipe (e.g., 2x Cobbled Deepslate = Crying Obsidian).</span>
     </div>
 
+    <!-- ───── BREWING ───── -->
+    <h2 id="brewing">Brewing Recipe <span style="color:var(--mint);font-size:.6em;font-weight:600;vertical-align:middle;">NEW v0.1.5</span></h2>
+    <p>
+      Brewing recipes substitute the result of a brewing-stand operation. The match is
+      <code>(ingredient material, bottle material)</code>: when the player puts your
+      <code>ingredient</code> in the top slot and any of your <code>input</code> bottles
+      below, the result is replaced with what you defined.
+    </p>
+    <pre><code>- key: "potion_of_speed"
+  type: "brewing"
+  ingredient: "SUGAR"
+  input: "POTION"               # POTION | SPLASH_POTION | LINGERING_POTION
+  result:
+    item: "POTION"
+    potion_type: "SWIFTNESS"    # any PotionType: STRENGTH, LONG_FIRE_RESISTANCE, ...
+    name: "&amp;bSpeed Brew"
+  auto_unlock_on: ["SUGAR"]</code></pre>
+
+    <h3>Required fields</h3>
+    <table>
+      <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>ingredient</code></td><td>Material</td><td>The item placed in the top brewing-stand slot</td></tr>
+        <tr><td><code>input</code></td><td>Material</td><td>Must be <code>POTION</code>, <code>SPLASH_POTION</code>, or <code>LINGERING_POTION</code></td></tr>
+        <tr><td><code>result.item</code></td><td>Material</td><td>Must also be one of <code>POTION</code> / <code>SPLASH_POTION</code> / <code>LINGERING_POTION</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Optional <code>result</code> fields specific to brewing</h3>
+    <table>
+      <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>potion_type</code></td><td>string</td><td>Bukkit <code>PotionType</code> enum value (e.g. <code>STRENGTH</code>, <code>LONG_NIGHT_VISION</code>, <code>STRONG_REGENERATION</code>). Omit to get a plain water bottle.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>How it actually fires</h3>
+    <p>The plugin handles brewing in two ways depending on whether vanilla accepts the ingredient pair:</p>
+    <ul>
+      <li><strong>Vanilla-valid pair</strong> (e.g. <code>GLOWSTONE_DUST + AWKWARD</code>): vanilla starts brewing,
+          we intercept the <code>BrewEvent</code> and substitute your result.</li>
+      <li><strong>Non-vanilla pair</strong> (e.g. <code>SUGAR + POTION</code>, or <code>OAK_LOG + POTION</code>):
+          vanilla would normally reject the ingredient and refuse to brew. We watch the brewing-stand
+          inventory directly, consume blaze powder, run a 20-second brewing animation, and replace
+          the bottles ourselves. Same look, same timing, and it works for any material as ingredient.</li>
+    </ul>
+
+    <div class="info-box tip">
+      <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span>Don't forget blaze powder in the fuel slot. Brewing still costs one fuel unit even for custom recipes, matching vanilla.</span>
+    </div>
+
+    <div class="info-box note">
+      <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <span>Currently <code>potion_type</code> covers the standard PotionType enum (vanilla potion effects). Fully custom effect lists are planned for a future release.</span>
+    </div>
+
     <footer class="site-footer">
-      &copy; 2025-2026 <a href="https://github.com/nionx01" target="_blank" rel="noopener noreferrer">NionX</a> &mdash; All Rights Reserved
+      &copy; 2025-2026 <a href="https://github.com/nionx01" target="_blank" rel="noopener noreferrer">NionX</a>. All Rights Reserved.
     </footer>
   </main>
 

@@ -6,7 +6,7 @@
   <link rel="icon" type="image/x-icon" href="favo.png">
   <link rel="preconnect" href="https://cdn.modrinth.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.modrinth.com">
-  <title>Permissions — LumenSmith Wiki</title>
+  <title>Permissions | LumenSmith Wiki</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
     <a href="index.html" class="logo">
       <img src="https://cdn.modrinth.com/data/B3BY6f3D/94a38963d6765730594aa68eed4b2196b29d982b_96.webp" alt="LumenSmith">
       LumenSmith
-      <span class="version">v0.1.4</span>
+      <span class="version">v0.1.5</span>
     </a>
     <nav class="header-right">
       <a href="https://modrinth.com/plugin/lumensmith" target="_blank" class="header-link">
@@ -110,17 +110,17 @@
         <tr>
           <td><code>lumensmith.admin</code></td>
           <td>OP only</td>
-          <td>Access to <code>/ls help</code>, <code>/ls list</code>, <code>/ls reload</code>, <code>/ls rescan</code>, <code>/ls fixbook</code>, <code>/ls delete</code></td>
+          <td>Access to <code>/ls list</code>, <code>/ls reload</code>, <code>/ls rescan</code>, <code>/ls fixbook</code>, <code>/ls delete</code>, the browser's <strong>Delete Mode</strong>, and add/remove of blocked outputs from the browser.</td>
         </tr>
         <tr>
           <td><code>lumensmith.gui</code></td>
           <td>Everyone</td>
-          <td>Access to <code>/ls recipes</code> (recipe browser GUI)</td>
+          <td>Access to <code>/ls</code>, <code>/ls recipes</code>, and <code>/ls help</code>. Lets players open the recipe browser and view recipe details.</td>
         </tr>
         <tr>
           <td><code>lumensmith.create</code></td>
           <td>OP only</td>
-          <td>Access to <code>/ls create</code> (in-game recipe creator)</td>
+          <td>Access to <code>/ls create</code>, the browser's <strong>Create New Recipe</strong> button, and the Edit button inside the recipe detail view.</td>
         </tr>
       </tbody>
     </table>
@@ -151,7 +151,7 @@
       <li>When a player tries to craft a recipe that has a <code>permission</code> set, LumenSmith checks if they have that permission.</li>
       <li>If the player <strong>lacks</strong> the permission, the crafting output is hidden (empty result slot) and the craft is blocked.</li>
       <li>If <code>permission_deny_message</code> is set, that message is shown to the player when they attempt to craft.</li>
-      <li>The permission node can be anything you want &mdash; you are not limited to <code>lumensmith.*</code> names.</li>
+      <li>The permission node can be anything you want; you are not limited to <code>lumensmith.*</code> names.</li>
     </ul>
 
     <div class="info-box tip">
@@ -172,11 +172,20 @@
 
     <div class="info-box note">
       <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-      <span>The recipe browser (<code>/ls recipes</code>) is available to all players by default. To restrict it, negate the <code>lumensmith.gui</code> permission.</span>
+      <span>The recipe browser (<code>/ls</code> / <code>/ls recipes</code>) is available to all players by default. To restrict it, negate the <code>lumensmith.gui</code> permission.</span>
     </div>
 
+    <h2 id="security-notes">Security Notes <span style="color:var(--mint);font-size:.6em;font-weight:600;vertical-align:middle;">v0.1.5</span></h2>
+    <p>Several permission gaps from earlier releases have been closed:</p>
+    <ul>
+      <li><strong>Tab-completion</strong> now respects permission. <code>/ls delete &lt;TAB&gt;</code> no longer leaks recipe keys to non-admins.</li>
+      <li><strong>GUI delete</strong> requires <code>lumensmith.admin</code> (matching <code>/ls delete</code>; previously inconsistent with <code>lumensmith.create</code>).</li>
+      <li><strong>GUI buttons are hidden</strong> when a player lacks the required permission, then re-checked server-side on click. Both the visual gating and the actual gating are in place.</li>
+      <li><strong>Default-true <code>lumensmith.gui</code></strong> means new users can immediately type <code>/ls help</code> and discover what's available without an op having to grant anything first.</li>
+    </ul>
+
     <footer class="site-footer">
-      &copy; 2025-2026 <a href="https://github.com/nionx01" target="_blank" rel="noopener noreferrer">NionX</a> &mdash; All Rights Reserved
+      &copy; 2025-2026 <a href="https://github.com/nionx01" target="_blank" rel="noopener noreferrer">NionX</a>. All Rights Reserved.
     </footer>
   </main>
 

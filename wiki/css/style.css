@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   LumenSmith Wiki — GitHub Pages Stylesheet
+   LumenSmith Wiki, GitHub Pages Stylesheet
    Professional documentation theme (cyan / teal / ice-blue)
    Enhanced with animations, mobile support & smooth interactions
    ═══════════════════════════════════════════════════════════════ */
@@ -140,7 +140,7 @@ a:hover { color: var(--ice); }
   filter: blur(0);
 }
 
-/* Fast scroll — skip animations, snap instantly */
+/* Fast scroll: skip animations, snap instantly */
 .fast-scroll .reveal,
 .fast-scroll .reveal.visible,
 .fast-scroll .reveal-stagger > *,
@@ -319,7 +319,7 @@ a:hover { color: var(--ice); }
   z-index: 1;
 }
 
-/* Sliding hover pill — absolutely-positioned highlight that glides between items */
+/* Sliding hover pill: absolutely-positioned highlight that glides between items */
 .sidebar-hover-pill {
   position: absolute;
   left: 14px;
@@ -818,6 +818,8 @@ code {
 
 .screenshot-grid img {
   width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
   border: 1px solid var(--border);
   border-radius: 8px;
   transition: border-color .3s, transform .4s var(--ease-out-expo), box-shadow .3s;
@@ -976,7 +978,7 @@ li strong { color: var(--ice); }
 }
 
 @media (max-width: 768px) {
-  /* Header stays on top of everything — sidebar slides under it */
+  /* Header stays on top of everything; sidebar slides under it */
   .site-header {
     z-index: 300;
     background: var(--bg-card);
@@ -1072,7 +1074,7 @@ li strong { color: var(--ice); }
   .quick-link:hover { transform: none; }
 }
 
-/* ---------- Below-fold paint skip — browser skips rendering until near viewport ---------- */
+/* ---------- Below-fold paint skip: browser skips rendering until near viewport ---------- */
 .main h2, .main h3, .main pre, .main table,
 .main .info-box, .main .screenshot-grid {
   content-visibility: auto;
@@ -1104,7 +1106,7 @@ li strong { color: var(--ice); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--dark-teal); }
 
-/* Sidebar scrollbar — always visible so user knows it scrolls */
+/* Sidebar scrollbar: always visible so user knows it scrolls */
 .sidebar::-webkit-scrollbar { width: 4px; }
 .sidebar::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); }
 .sidebar::-webkit-scrollbar-thumb { background: var(--border-lt); border-radius: 2px; }

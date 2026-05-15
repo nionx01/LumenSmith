@@ -6,7 +6,7 @@
   <link rel="icon" type="image/x-icon" href="favo.png">
   <link rel="preconnect" href="https://cdn.modrinth.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.modrinth.com">
-  <title>Commands — LumenSmith Wiki</title>
+  <title>Commands | LumenSmith Wiki</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
     <a href="index.html" class="logo">
       <img src="https://cdn.modrinth.com/data/B3BY6f3D/94a38963d6765730594aa68eed4b2196b29d982b_96.webp" alt="LumenSmith">
       LumenSmith
-      <span class="version">v0.1.4</span>
+      <span class="version">v0.1.5</span>
     </a>
     <nav class="header-right">
       <a href="https://modrinth.com/plugin/lumensmith" target="_blank" class="header-link">
@@ -81,6 +81,7 @@
       <div class="sidebar-sub">
         <a href="#command-reference">Command Reference</a>
         <a href="#command-details">Command Details</a>
+        <a href="#using-the-gui">Using the GUI</a>
       </div>
     </div>
   </nav>
@@ -92,7 +93,7 @@
         <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
         Commands
       </h1>
-      <p class="subtitle">All LumenSmith commands use the base command <code>/ls</code> (alias for <code>/lumensmith</code>).</p>
+      <p class="subtitle">All LumenSmith commands use the base command <code>/ls</code> (alias for <code>/lumensmith</code>). Typing <code>/ls</code> with no arguments opens the recipe browser straight away.</p>
     </div>
 
     <!-- Command Table -->
@@ -107,13 +108,23 @@
       </thead>
       <tbody>
         <tr>
+          <td><code>/ls</code></td>
+          <td>Opens the recipe browser GUI (shortcut for <code>/ls recipes</code>)</td>
+          <td><code>lumensmith.gui</code></td>
+        </tr>
+        <tr>
           <td><code>/ls help</code></td>
           <td>Show command overview and version info</td>
-          <td><code>lumensmith.admin</code></td>
+          <td><code>lumensmith.gui</code></td>
+        </tr>
+        <tr>
+          <td><code>/ls recipes</code></td>
+          <td>Open the in-game recipe browser GUI</td>
+          <td><code>lumensmith.gui</code></td>
         </tr>
         <tr>
           <td><code>/ls list</code></td>
-          <td>List all blocked outputs and custom recipes</td>
+          <td>List all blocked outputs and custom recipes (console-style)</td>
           <td><code>lumensmith.admin</code></td>
         </tr>
         <tr>
@@ -128,13 +139,8 @@
         </tr>
         <tr>
           <td><code>/ls fixbook</code></td>
-          <td>Remove duplicate adjacent-pair entries from recipe books</td>
+          <td>Re-discover every plugin recipe for online players (fixes book sync issues)</td>
           <td><code>lumensmith.admin</code></td>
-        </tr>
-        <tr>
-          <td><code>/ls recipes</code></td>
-          <td>Open the in-game recipe browser GUI</td>
-          <td><code>lumensmith.gui</code></td>
         </tr>
         <tr>
           <td><code>/ls create &lt;key&gt;</code></td>
@@ -152,10 +158,16 @@
     <!-- Detailed Descriptions -->
     <h2 id="command-details">Command Details</h2>
 
+    <h3><code>/ls</code> <span style="opacity:.6">(no arguments)</span></h3>
+    <p>
+      Opens the recipe browser GUI immediately. The fast path. Anyone with
+      <code>lumensmith.gui</code> (default <code>true</code>) can use it.
+    </p>
+
     <h3><code>/ls help</code></h3>
     <p>
       Displays the full command overview along with the current plugin version.
-      Useful for quickly checking which commands are available and what version you're running.
+      Open to all players (<code>lumensmith.gui</code>) so new users can discover the commands they can run.
     </p>
 
     <h3><code>/ls list</code></h3>
@@ -183,38 +195,61 @@
 
     <h3><code>/ls fixbook</code></h3>
     <p>
-      Removes duplicate recipe book entries caused by adjacent-pair recipes.
-      Adjacent-pair recipes register multiple internal placements, which can sometimes
-      cause duplicate entries in the recipe book. This command cleans those up.
+      Re-discovers every plugin-registered recipe for all online players. Use this if
+      a recipe book seems out of sync after a manual config edit or unusual reload.
+      Adjacent-pair rotations all unlock together (they share a recipe group), so you
+      should rarely need it, but it's there.
     </p>
 
     <h3><code>/ls recipes</code></h3>
     <p>
-      Opens a paginated GUI that displays all custom recipes. Click any recipe to see
-      its full details (ingredients, result, settings). From the detail view, you can
-      <strong>edit</strong> or <strong>delete</strong> the recipe.
+      Opens the paginated browser. Click any recipe icon to see its full details.
+      The bottom navigation row includes:
     </p>
+    <ul>
+      <li><strong>Nether Star, Create New Recipe</strong> (<code>lumensmith.create</code>):
+          closes the inventory and prompts you in chat for a key, then opens the creator.</li>
+      <li><strong>Barrier, View Blocked Outputs</strong>: toggles into a view of every
+          material in <code>remove_by_output</code>. Admins can click a blocked material to
+          unblock it, or click an item from their own inventory to add it.</li>
+      <li><strong>TNT, Delete Mode</strong> (<code>lumensmith.admin</code>): switches
+          to a red-tinted view where shift-clicking any recipe removes it from config and
+          reloads instantly. Regular clicks just show a hint. The shift requirement
+          is intentional, so a fat-finger click can't nuke a recipe.</li>
+    </ul>
     <div class="info-box note">
       <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-      <span>The recipe browser is available to all players by default (permission: <code>lumensmith.gui</code>, default: true).</span>
+      <span>The recipe browser is available to all players by default (permission: <code>lumensmith.gui</code>, default <code>true</code>).</span>
     </div>
 
     <h3><code>/ls create &lt;key&gt;</code></h3>
     <p>
       Opens the in-game recipe creator GUI. The <code>&lt;key&gt;</code> must be a unique identifier
       using only letters, numbers, and underscores (e.g., <code>my_custom_sword</code>).
+      You can also start the creator from the browser's nether-star button, which will
+      prompt for the key in chat.
     </p>
-    <p>In the creator you can:</p>
+    <p>The creator opens with a categorised type selector (5 categories instead of 9 icons):</p>
     <ul>
-      <li>Select the recipe type visually</li>
-      <li>Click slots and pick items from your inventory</li>
+      <li><strong>Crafting</strong> &rarr; Shaped, Shapeless, Adjacent Pair</li>
+      <li><strong>Cooking</strong> &rarr; Furnace, Blasting, Smoking, Campfire</li>
+      <li><strong>Stonecutting</strong></li>
+      <li><strong>Smithing Transform</strong></li>
+      <li><strong>Brewing</strong> <em>(new in v0.1.5)</em></li>
+    </ul>
+    <p>Inside the editor you can:</p>
+    <ul>
+      <li>Click slots and pick items from your inventory (virtual; no real items moved)</li>
       <li>Set the result item and amount (1&ndash;64)</li>
       <li>Adjust cooking time and experience for cooking recipes</li>
-      <li>Restrict allowed fuels for cooking recipes</li>
+      <li>Restrict allowed fuels (cooking recipes)</li>
       <li>Choose direction for adjacent-pair recipes</li>
+      <li>Override the <strong>Unlock Triggers</strong>: defaults to your ingredients, or click the Knowledge Book to pick custom trigger materials</li>
     </ul>
     <p>
       When you confirm, the recipe is saved directly to <code>config.yml</code> and loaded instantly.
+      Broken recipes (e.g. brewing without a bottle, or with a non-potion result) are rejected
+      with a clear error message instead of saving silently.
     </p>
 
     <h3><code>/ls delete &lt;key&gt;</code></h3>
@@ -227,8 +262,138 @@
       <span>Deleting a recipe is permanent and cannot be undone. The recipe entry is removed from <code>config.yml</code>.</span>
     </div>
 
+    <!-- Using the GUI -->
+    <h2 id="using-the-gui">Using the In-Game GUI</h2>
+    <p>
+      Everything LumenSmith does is reachable from <code>/ls</code> alone. The
+      v0.1.5 release reorganised the menus so every action is a couple of clicks deep.
+      This section walks through the full flow.
+    </p>
+
+    <h3>The browser (<code>/ls</code>)</h3>
+    <p>
+      Typing <code>/ls</code> with no arguments opens the recipe browser immediately,
+      gated by <code>lumensmith.gui</code> (default <code>true</code>). One icon per
+      custom recipe, paginated at 45 recipes per page.
+    </p>
+    <img src="https://cdn.modrinth.com/data/B3BY6f3D/images/d575d618e76e0440753ecab46ad9c26062f4a41c.png" alt="Recipe browser opened with /ls, showing recipe icons and the bottom navigation row" style="width:100%;max-width:760px;border-radius:12px;margin:12px 0 22px;" loading="lazy" draggable="false">
+
+    <p>The bottom navigation row at slots 45-53 contains:</p>
+    <table>
+      <thead><tr><th>Slot</th><th>Icon</th><th>Action</th><th>Permission</th></tr></thead>
+      <tbody>
+        <tr><td>45</td><td>Arrow</td><td>Previous page (if available)</td><td>open</td></tr>
+        <tr><td>46</td><td>Nether Star</td><td>Create New Recipe (chat prompt for key)</td><td><code>lumensmith.create</code></td></tr>
+        <tr><td>47</td><td>Barrier</td><td>Switch to Blocked Outputs view</td><td>open</td></tr>
+        <tr><td>48</td><td>TNT</td><td>Enter Delete Mode</td><td><code>lumensmith.admin</code></td></tr>
+        <tr><td>49</td><td>Paper</td><td>Page indicator (current / total)</td><td>open</td></tr>
+        <tr><td>53</td><td>Arrow</td><td>Next page (if available)</td><td>open</td></tr>
+      </tbody>
+    </table>
+
+    <h3>The detail view</h3>
+    <p>
+      Clicking any recipe icon opens its detail view. Ingredients are laid out the way
+      you'd see them in vanilla: 3x3 for shaped recipes, three slots for smithing,
+      ingredient-above-bottle for brewing, and so on. An info panel shows the recipe
+      key, type, cooldowns, permissions, and effects.
+    </p>
+    <img src="https://cdn.modrinth.com/data/B3BY6f3D/images/b39b157fcc49799ec4a9a8f61e885961ff028b1e.png" alt="Recipe detail view with ingredients laid out and an Edit / Delete row" style="width:100%;max-width:760px;border-radius:12px;margin:12px 0 22px;" loading="lazy" draggable="false">
+
+    <p>Players with the right permissions also see action buttons:</p>
+    <ul>
+      <li><strong>Writable Book</strong> (slot 53, requires <code>lumensmith.create</code>): loads the recipe into the creator for editing, with every field pre-filled.</li>
+      <li><strong>TNT</strong> (slot 47, requires <code>lumensmith.admin</code>): deletes the recipe from <code>config.yml</code> and reloads.</li>
+      <li><strong>Barrier</strong> (slot 45): back to the browser.</li>
+    </ul>
+
+    <h3>The Blocked Outputs view</h3>
+    <p>
+      Clicking the Barrier in the browser switches to a paginated view of every material
+      in <code>remove_by_output</code>. Read-only for normal players; admins get full
+      live editing.
+    </p>
+    <ul>
+      <li><strong>Click a blocked material</strong> (admin): removes it from
+          <code>remove_by_output</code>, restores the vanilla recipe, reloads.</li>
+      <li><strong>Click an item in your own inventory</strong> while in this view (admin):
+          adds that material to <code>remove_by_output</code>. No real items are moved.</li>
+      <li><strong>Crafting Table icon</strong> (slot 47): switch back to the recipe view.</li>
+    </ul>
+    <img src="https://cdn.modrinth.com/data/B3BY6f3D/images/94ae6e6d8ac1ff8bd58959b51b224275c6ad0e98.png" alt="Blocked Outputs view with TNT, TNT_MINECART and other materials visible" style="width:100%;max-width:760px;border-radius:12px;margin:12px 0 22px;" loading="lazy" draggable="false">
+
+    <h3>Delete Mode</h3>
+    <p>
+      Admins can click the TNT button in the browser to enter Delete Mode. The view
+      re-renders red, every recipe icon shows "SHIFT-CLICK to delete this recipe",
+      and the title bar reads <em>LumenSmith Delete Recipe</em>.
+    </p>
+    <ul>
+      <li><strong>Shift-click a recipe</strong>: removes it from <code>config.yml</code> and reloads instantly. You'll see a confirmation in chat.</li>
+      <li><strong>Regular click</strong>: shows the "Hold Shift" hint. Intentional, to prevent fat-finger deletions.</li>
+      <li><strong>Arrow icon</strong> (slot 48): exits Delete Mode.</li>
+    </ul>
+    <img src="https://cdn.modrinth.com/data/B3BY6f3D/images/b019e7f915714ae7e409434dfd638eae20808ceb.png" alt="Delete Mode view with red icons and the shift-click hint" style="width:100%;max-width:760px;border-radius:12px;margin:12px 0 22px;" loading="lazy" draggable="false">
+
+    <h3>Creating a new recipe</h3>
+    <p>
+      Clicking the Nether Star in the browser starts the creation flow:
+    </p>
+    <ol>
+      <li>The browser closes and chat asks for a recipe key (<code>lowercase letters, numbers, underscores</code> only).</li>
+      <li>Type the key. The plugin checks that it isn't already used and opens the type selector.</li>
+      <li>Type <code>cancel</code> instead to abort; the prompt also expires automatically after 30 seconds.</li>
+    </ol>
+
+    <p>The type selector groups the ten recipe types into five categories, centred in row two:</p>
+    <ul>
+      <li><strong>Crafting Table</strong> &rarr; sub-menu (Shaped, Shapeless, Adjacent Pair)</li>
+      <li><strong>Furnace</strong> &rarr; sub-menu (Furnace, Blasting, Smoking, Campfire)</li>
+      <li><strong>Stonecutter</strong> &rarr; opens editor directly</li>
+      <li><strong>Smithing Table</strong> &rarr; opens editor directly</li>
+      <li><strong>Brewing Stand</strong> &rarr; opens editor directly</li>
+    </ul>
+    <img src="https://cdn.modrinth.com/data/B3BY6f3D/images/4687c4f5d65c285b3840af76b29b9eec3b0372e0.png" alt="Type selector showing the five centred category icons in row two" style="width:100%;max-width:760px;border-radius:12px;margin:12px 0 22px;" loading="lazy" draggable="false">
+
+    <h3>The editor</h3>
+    <p>
+      The editor uses <strong>virtual slots</strong>: no real items are moved or
+      consumed. Click a slot to select it, then click any item in your inventory to
+      assign that material. Right-click a slot to clear it.
+    </p>
+    <img src="https://cdn.modrinth.com/data/B3BY6f3D/images/de6fc682d602213fc1df3716697694db3dab4968.png" alt="Editor showing ingredient slots, result, result-amount arrow, and the Knowledge Book Unlock Triggers button" style="width:100%;max-width:760px;border-radius:12px;margin:12px 0 22px;" loading="lazy" draggable="false">
+
+    <p>Editor buttons (visible based on the recipe type):</p>
+    <table>
+      <thead><tr><th>Button</th><th>Slot</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td>Type label</td><td>4</td><td>Click to go back to the type selector (resets the recipe).</td></tr>
+        <tr><td>Result</td><td>24</td><td>The output material. Click to assign.</td></tr>
+        <tr><td>Result amount arrow</td><td>34</td><td>Left-click <code>+1</code>, right-click <code>-1</code>. Range 1&ndash;64.</td></tr>
+        <tr><td>Cooking time (clock)</td><td>37</td><td>Cooking recipes only. <code>+/- 50</code> ticks per click.</td></tr>
+        <tr><td>Experience (XP bottle)</td><td>38</td><td>Cooking recipes only. <code>+/- 0.1</code> per click.</td></tr>
+        <tr><td>Fuel selector (bucket)</td><td>29</td><td>Cooking recipes only. Click to add allowed fuels, right-click to clear back to "Any".</td></tr>
+        <tr><td>Direction (compass / rail / ladder)</td><td>30</td><td>Adjacent-pair only. Cycles Both &rarr; Horizontal &rarr; Vertical.</td></tr>
+        <tr><td>Unlock Triggers (Knowledge Book)</td><td>40</td><td>Pick custom trigger materials. Right-click to clear back to "Auto". See <a href="recipes.html#auto-unlock">Auto-Unlock</a>.</td></tr>
+        <tr><td>Confirm (emerald block)</td><td>53</td><td>Validates and saves to <code>config.yml</code>. Reloads instantly.</td></tr>
+        <tr><td>Cancel (redstone block)</td><td>45</td><td>Aborts without saving.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box note">
+      <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <span>Broken recipes are rejected at save time. Try to confirm a brewing recipe without a bottle, or any recipe without a result, and you'll get a clear error message in chat instead of a silent half-saved entry.</span>
+    </div>
+
+    <h3>Session state across menu transitions</h3>
+    <p>
+      Going Main &rarr; Sub-menu &rarr; Editor &rarr; Confirm preserves your work
+      across every step. ESC at any point cleanly cancels. PlayerQuitEvent clears
+      sessions automatically, so a disconnect mid-creation doesn't leak memory.
+    </p>
+
     <footer class="site-footer">
-      &copy; 2025-2026 <a href="https://github.com/nionx01" target="_blank" rel="noopener noreferrer">NionX</a> &mdash; All Rights Reserved
+      &copy; 2025-2026 <a href="https://github.com/nionx01" target="_blank" rel="noopener noreferrer">NionX</a>. All Rights Reserved.
     </footer>
   </main>
 

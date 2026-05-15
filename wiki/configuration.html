@@ -6,7 +6,7 @@
   <link rel="icon" type="image/x-icon" href="favo.png">
   <link rel="preconnect" href="https://cdn.modrinth.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.modrinth.com">
-  <title>Configuration — LumenSmith Wiki</title>
+  <title>Configuration | LumenSmith Wiki</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
     <a href="index.html" class="logo">
       <img src="https://cdn.modrinth.com/data/B3BY6f3D/94a38963d6765730594aa68eed4b2196b29d982b_96.webp" alt="LumenSmith">
       LumenSmith
-      <span class="version">v0.1.4</span>
+      <span class="version">v0.1.5</span>
     </a>
     <nav class="header-right">
       <a href="https://modrinth.com/plugin/lumensmith" target="_blank" class="header-link">
@@ -84,6 +84,7 @@
         <a href="#blocked">Blocked Outputs</a>
         <a href="#deny-message">Deny Message</a>
         <a href="#custom-recipes">Custom Recipes</a>
+        <a href="#brewing-fields">Brewing Fields</a>
         <a href="#full-example">Full Example</a>
       </div>
     </div>
@@ -144,7 +145,7 @@ cooldown_storage: file</code></pre>
         <tr>
           <td><code>worlds</code></td>
           <td>list</td>
-          <td>&mdash;</td>
+          <td>none</td>
           <td>World names where rules apply (only used when <code>whitelistworldoff: false</code>)</td>
         </tr>
       </tbody>
@@ -195,12 +196,13 @@ cooldown_storage: file</code></pre>
     <table>
       <thead><tr><th>Field</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
       <tbody>
-        <tr><td><code>item</code></td><td>string</td><td>&mdash;</td><td>Material name (required)</td></tr>
+        <tr><td><code>item</code></td><td>string</td><td>none</td><td>Material name (required)</td></tr>
         <tr><td><code>amount</code></td><td>int</td><td>1</td><td>Output amount (1&ndash;64)</td></tr>
-        <tr><td><code>name</code></td><td>string</td><td>&mdash;</td><td>Custom display name (supports <code>&amp;</code> color codes)</td></tr>
-        <tr><td><code>lore</code></td><td>list</td><td>&mdash;</td><td>Lore lines (supports <code>&amp;</code> color codes)</td></tr>
-        <tr><td><code>enchantments</code></td><td>list</td><td>&mdash;</td><td>Enchantments in <code>"NAME:LEVEL"</code> format</td></tr>
-        <tr><td><code>custom_model_data</code></td><td>int</td><td>&mdash;</td><td>Custom model data for resource packs</td></tr>
+        <tr><td><code>name</code></td><td>string</td><td>none</td><td>Custom display name (supports <code>&amp;</code> color codes)</td></tr>
+        <tr><td><code>lore</code></td><td>list</td><td>none</td><td>Lore lines (supports <code>&amp;</code> color codes)</td></tr>
+        <tr><td><code>enchantments</code></td><td>list</td><td>none</td><td>Enchantments in <code>"NAME:LEVEL"</code> format</td></tr>
+        <tr><td><code>custom_model_data</code></td><td>int</td><td>none</td><td>Custom model data for resource packs</td></tr>
+        <tr><td><code>potion_type</code></td><td>string</td><td>none</td><td>(Brewing only) Bukkit <code>PotionType</code> enum value, e.g. <code>STRENGTH</code>, <code>LONG_FIRE_RESISTANCE</code>, <code>STRONG_REGENERATION</code>. Only meaningful when <code>item</code> is <code>POTION</code> / <code>SPLASH_POTION</code> / <code>LINGERING_POTION</code>.</td></tr>
       </tbody>
     </table>
 
@@ -208,14 +210,14 @@ cooldown_storage: file</code></pre>
     <table>
       <thead><tr><th>Field</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
       <tbody>
-        <tr><td><code>auto_unlock_on</code></td><td>list</td><td>&mdash;</td><td>Materials that trigger recipe book unlock</td></tr>
+        <tr><td><code>auto_unlock_on</code></td><td>list</td><td>(auto)</td><td>Materials that trigger recipe book unlock. <strong>If omitted</strong>, the plugin auto-derives the list from the recipe's ingredients. Provide your own list to override; you can list as many materials as you like.</td></tr>
         <tr><td><code>replace_existing</code></td><td>boolean</td><td><code>true</code></td><td>Replace conflicting vanilla recipes</td></tr>
-        <tr><td><code>permission</code></td><td>string</td><td>&mdash;</td><td>Permission required to craft</td></tr>
-        <tr><td><code>permission_deny_message</code></td><td>string</td><td>&mdash;</td><td>Message shown when permission is missing</td></tr>
-        <tr><td><code>cooldown</code></td><td>int</td><td>&mdash;</td><td>Seconds between crafts (per-player)</td></tr>
-        <tr><td><code>max_crafts</code></td><td>int</td><td>&mdash;</td><td>Lifetime craft limit (per-player)</td></tr>
-        <tr><td><code>cooldown_message</code></td><td>string</td><td>&mdash;</td><td>Message on cooldown (<code>%remaining%</code> placeholder)</td></tr>
-        <tr><td><code>max_crafts_message</code></td><td>string</td><td>&mdash;</td><td>Message when limit is reached</td></tr>
+        <tr><td><code>permission</code></td><td>string</td><td>none</td><td>Permission required to craft</td></tr>
+        <tr><td><code>permission_deny_message</code></td><td>string</td><td>none</td><td>Message shown when permission is missing</td></tr>
+        <tr><td><code>cooldown</code></td><td>int</td><td>none</td><td>Seconds between crafts (per-player)</td></tr>
+        <tr><td><code>max_crafts</code></td><td>int</td><td>none</td><td>Lifetime craft limit (per-player)</td></tr>
+        <tr><td><code>cooldown_message</code></td><td>string</td><td>none</td><td>Message on cooldown (<code>%remaining%</code> placeholder)</td></tr>
+        <tr><td><code>max_crafts_message</code></td><td>string</td><td>none</td><td>Message when limit is reached</td></tr>
       </tbody>
     </table>
 
@@ -239,21 +241,46 @@ cooldown_storage: file</code></pre>
       </tbody>
     </table>
 
+    <!-- Brewing-specific fields -->
+    <h2 id="brewing-fields">Brewing-Specific Fields <span style="color:var(--mint);font-size:.6em;font-weight:600;vertical-align:middle;">NEW v0.1.5</span></h2>
+    <p>
+      Brewing recipes use a different ingredient layout than crafting/cooking. Instead of <code>ingredients</code> or
+      <code>input</code>, they take two separate fields plus a potion-aware <code>result</code>.
+    </p>
+    <table>
+      <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>ingredient</code></td><td>Material</td><td>What goes in the brewing stand's top slot. Any material is allowed; the plugin handles non-vanilla pairs by driving the brewing process itself.</td></tr>
+        <tr><td><code>input</code></td><td>Material</td><td>The bottle material in the bottom slots. Must be <code>POTION</code>, <code>SPLASH_POTION</code>, or <code>LINGERING_POTION</code>.</td></tr>
+        <tr><td><code>result.item</code></td><td>Material</td><td>Must also be one of the three potion materials.</td></tr>
+        <tr><td><code>result.potion_type</code></td><td>string</td><td>Bukkit <code>PotionType</code>: the potion effect on the resulting bottle. See <a href="recipes.html#brewing">Brewing</a>.</td></tr>
+      </tbody>
+    </table>
+
     <!-- Full Example -->
     <h2 id="full-example">Full Example Config</h2>
-    <pre><code>update_checker: true
-cooldown_storage: file
+    <pre><code># ── Global ──────────────────────────────────────────────────────────────
+update_checker: true
+cooldown_storage: "file"   # "file" = persistent, "session" = memory-only
 
+# ── World filter ────────────────────────────────────────────────────────
+# whitelistworldoff: true  -&gt; features run in every world
+# whitelistworldoff: false -&gt; only the worlds listed below
 world_filter:
   whitelistworldoff: true
-  worlds:
-    - world
+  worlds: ["world", "world_nether", "world_the_end"]
 
+# ── Blocked outputs ─────────────────────────────────────────────────────
+# Any result listed here is uncraftable. Recipe book hides the output,
+# clicks are blocked, ingredients are NOT consumed.
 remove_by_output:
   - TNT
   - TNT_MINECART
 
+# ── Custom recipes ──────────────────────────────────────────────────────
 custom_recipes:
+
+  # SHAPED — every-option showcase
   - key: "excalibur"
     type: "shaped"
     shape: [" D ", " D ", " S "]
@@ -286,10 +313,73 @@ custom_recipes:
       particle_count: 50
     auto_unlock_on: ["DIAMOND"]
 
-deny_message: '&amp;cCrafting of &amp;e%item% &amp;cis disabled on this server.'</code></pre>
+  # SHAPELESS
+  - key: "cheap_torch"
+    type: "shapeless"
+    ingredients: ["STICK", "COAL"]
+    result: { item: "TORCH", amount: 8 }
+    auto_unlock_on: ["COAL", "CHARCOAL"]
+
+  # ADJACENT PAIR — two items next to each other in any 2x2 area
+  - key: "glowing_ink_sac_craft"
+    type: "adjacent_pair"
+    items: ["GLOWSTONE_DUST", "INK_SAC"]
+    result: { item: "GLOW_INK_SAC", amount: 1 }
+    auto_unlock_on: ["GLOWSTONE_DUST", "INK_SAC"]
+
+  # FURNACE / BLASTING / SMOKING / CAMPFIRE all share the same shape
+  - key: "blast_raw_iron"
+    type: "blasting"
+    input: "RAW_IRON"
+    result:
+      item: "IRON_INGOT"
+      amount: 2
+      name: "&amp;fRefined Iron"
+    experience: 1.0
+    cooking_time: 100        # ticks
+    auto_unlock_on: ["RAW_IRON"]
+
+  # STONECUTTING
+  - key: "cut_stone_bricks"
+    type: "stonecutting"
+    input: "STONE"
+    result: { item: "STONE_BRICKS", amount: 2 }
+    auto_unlock_on: ["STONE"]
+
+  # SMITHING TRANSFORM
+  - key: "infernal_pickaxe"
+    type: "smithing_transform"
+    template: "NETHERITE_UPGRADE_SMITHING_TEMPLATE"
+    base: "DIAMOND_PICKAXE"
+    addition: "NETHERITE_INGOT"
+    result:
+      item: "NETHERITE_PICKAXE"
+      amount: 1
+      name: "&amp;4Infernal Pickaxe"
+      enchantments: ["EFFICIENCY:5"]
+    auto_unlock_on: ["NETHERITE_INGOT"]
+
+  # BREWING — works even with ingredients vanilla normally refuses
+  # `input` can be a plain string ("POTION") or a map that pins the base
+  # potion type (WATER, AWKWARD, etc.). `result` carries the new potion.
+  - key: "spruce_night_vision"
+    type: "brewing"
+    ingredient: "SPRUCE_LOG"
+    input:
+      item: "POTION"
+      potion_type: "AWKWARD"
+    result:
+      item: "POTION"
+      potion_type: "NIGHT_VISION"
+      name: "&amp;9Sylvan Night Vision"
+    auto_unlock_on: ["SPRUCE_LOG"]
+
+# ── Deny message ────────────────────────────────────────────────────────
+# Shown when a blocked output is attempted. Only %item% is supported.
+deny_message: "&amp;cCrafting of &amp;e%item% &amp;cis disabled on this server."</code></pre>
 
     <footer class="site-footer">
-      &copy; 2025-2026 <a href="https://github.com/nionx01" target="_blank" rel="noopener noreferrer">NionX</a> &mdash; All Rights Reserved
+      &copy; 2025-2026 <a href="https://github.com/nionx01" target="_blank" rel="noopener noreferrer">NionX</a>. All Rights Reserved.
     </footer>
   </main>
 

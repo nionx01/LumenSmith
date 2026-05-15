@@ -6,7 +6,7 @@
   <link rel="icon" type="image/x-icon" href="favo.png">
   <link rel="preconnect" href="https://cdn.modrinth.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.modrinth.com">
-  <title>Changelog — LumenSmith Wiki</title>
+  <title>Changelog | LumenSmith Wiki</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
     <a href="index.html" class="logo">
       <img src="https://cdn.modrinth.com/data/B3BY6f3D/94a38963d6765730594aa68eed4b2196b29d982b_96.webp" alt="LumenSmith">
       LumenSmith
-      <span class="version">v0.1.4</span>
+      <span class="version">v0.1.5</span>
     </a>
     <nav class="header-right">
       <a href="https://modrinth.com/plugin/lumensmith" target="_blank" class="header-link">
@@ -79,6 +79,7 @@
     <div class="sidebar-section">
       <h3>On This Page</h3>
       <div class="sidebar-sub">
+        <a href="#v015">v0.1.5</a>
         <a href="#v014">v0.1.4</a>
         <a href="#v013">v0.1.3</a>
         <a href="#v012">v0.1.2</a>
@@ -98,36 +99,128 @@
       <p class="subtitle">Version history and release notes for LumenSmith.</p>
     </div>
 
+    <!-- ═══ v0.1.5 ═══ -->
+    <h2 id="v015">v0.1.5: Brewing, Quick Actions &amp; Hardening</h2>
+    <p><em>May 14, 2026 (Latest release)</em></p>
+
+    <h3>New Features</h3>
+
+    <h3>Brewing Recipe Type</h3>
+    <ul>
+      <li>New <code>brewing</code> recipe type, the 10th supported station</li>
+      <li>Custom (ingredient, bottle) pairs produce custom potions, including non-vanilla pairs (e.g. <code>OAK_LOG + POTION</code>)</li>
+      <li>For vanilla-valid pairs, the existing <code>BrewEvent</code> path overrides the vanilla result</li>
+      <li>For non-vanilla pairs, a new <code>BrewingManager</code> runs its own 20-second brewing animation, consumes blaze powder, and replaces bottles. It works for any material as ingredient.</li>
+      <li>New <code>potion_type</code> field on <code>result</code> sets the bottle's Bukkit <code>PotionType</code> (e.g. <code>STRENGTH</code>, <code>LONG_NIGHT_VISION</code>, <code>STRONG_REGENERATION</code>)</li>
+      <li>Brewing recipes are rejected at save time if ingredient, bottle, or result aren't set or aren't valid potion materials. No more silently broken recipes.</li>
+    </ul>
+
+    <h3>Quick Actions in the Recipe Browser</h3>
+    <ul>
+      <li><strong>Nether Star button</strong>: opens the creator with a chat-prompt for the recipe key</li>
+      <li><strong>TNT button (admin)</strong>: toggles Delete Mode; shift-click a recipe to remove it from <code>config.yml</code> instantly</li>
+      <li><strong>Barrier button</strong>: switch to a Blocked Outputs view of <code>remove_by_output</code>. Admins can click a blocked material to unblock it, or click an item in their inventory to add it.</li>
+    </ul>
+
+    <h3>Reorganised Recipe Creator</h3>
+    <ul>
+      <li>Five category icons in the top-level menu (Crafting / Cooking / Stonecutting / Smithing / Brewing) instead of nine flat icons</li>
+      <li>Sub-menus drill into Crafting (shaped / shapeless / adjacent_pair) and Cooking (furnace / blasting / smoking / campfire)</li>
+      <li>Back button preserves your session across menu transitions</li>
+      <li>All menus centered visually with no gaps between icons</li>
+    </ul>
+
+    <h3>Custom Unlock Triggers</h3>
+    <ul>
+      <li>New Knowledge Book button in the editor lets you pick the materials that auto-unlock the recipe in the recipe book</li>
+      <li>"Auto" (no triggers picked) keeps the historical behaviour. The trigger list is derived from ingredients.</li>
+      <li>Pick one or many trigger materials to override; right-click clears back to Auto</li>
+    </ul>
+
+    <h3>Faster Top-Level Command</h3>
+    <ul>
+      <li><code>/ls</code> with no arguments now opens the recipe browser directly. No need to type <code>/ls recipes</code>.</li>
+      <li><code>/ls help</code> moved from <code>lumensmith.admin</code> to <code>lumensmith.gui</code> so new users can see the command list</li>
+    </ul>
+
+    <h3>Instant Auto-Unlock</h3>
+    <ul>
+      <li>Recipe-book unlocks now fire the same tick the trigger item enters the player's inventory</li>
+      <li>Listener checks the cursor as well as inventory contents, catching the just-crafted "result on cursor" case</li>
+      <li>Inventory-click events (shift-click out of chests, villager trades, furnace extracts) trigger the rescan immediately. No more "I closed the chest and then it appeared".</li>
+      <li><code>/give</code> detection now handles namespaced forms like <code>/minecraft:give</code></li>
+    </ul>
+
+    <h3>Bug Fixes</h3>
+    <ul>
+      <li><strong>Campfire interaction fix</strong>: right-clicking a lit campfire with a custom recipe's ingredient now places the item correctly. Paper's vanilla interaction routing didn't always pick up plugin-added <code>CampfireRecipe</code> objects; we handle the placement ourselves.</li>
+      <li><strong>Recipe-key collision</strong>: a strict <code>NamespacedKey</code> map prevents vanilla recipes from accidentally inheriting a custom recipe's permission or cooldown when short keys collided.</li>
+      <li><strong>Cooldown save race</strong>: the 5-minute autosave now builds a snapshot on the main thread and writes async; no more <code>ConcurrentModificationException</code> risk.</li>
+      <li><strong>Reload restores vanilla recipes</strong>: deleting a custom recipe with <code>replace_existing</code> and reloading brings the original vanilla recipe back without a server restart.</li>
+      <li><strong>Adjacent-pair alternates</strong>: every placement of an <code>adjacent_pair</code> recipe is now auto-unlocked together (shared recipe group), so all rotations appear in the recipe book.</li>
+      <li><strong>Per-cooking-type fuel index</strong>: furnace, blast furnace, and smoker recipes can share the same input material with different <code>allowed_fuels</code> without overwriting each other.</li>
+      <li><strong>Result-slot bypass</strong>: cooldown, permission, and max-craft checks now also fire for SWAP_OFFHAND (F) and drop (Q) clicks on the crafting result slot.</li>
+    </ul>
+
+    <h3>Security Hardening</h3>
+    <ul>
+      <li><strong>GUI delete permission</strong> aligned with <code>/ls delete</code>: both require <code>lumensmith.admin</code></li>
+      <li><strong>Tab completion</strong> respects permissions; non-admins no longer leak recipe keys via <code>/ls delete &lt;TAB&gt;</code></li>
+      <li><strong>Inventory routing</strong> migrated from title-string matching to <code>InventoryHolder</code>-based dispatch, which is future-safe against the deprecated <code>view.getTitle()</code> API</li>
+      <li><strong>CooldownManager cleanup</strong>: player entries are dropped on quit when no craft count needs to persist, keeping the in-memory map bounded</li>
+    </ul>
+
+    <h3>Compatibility</h3>
+    <ul>
+      <li>Paper API target bumped to <code>26.1.2.build.63-stable</code></li>
+      <li>Separate build for the 1.21.x line still available (<code>lumensmith-0.1.5-mc1.21.jar</code>)</li>
+      <li>Single source tree, so the jar that fits your server is the only thing that changes</li>
+    </ul>
+
+    <h3>Config Changes</h3>
+    <p>New brewing recipe shape:</p>
+    <pre><code>custom_recipes:
+  - key: "speed_brew"
+    type: "brewing"
+    ingredient: "SUGAR"           # top brewing-stand slot
+    input: "POTION"               # POTION / SPLASH_POTION / LINGERING_POTION
+    result:
+      item: "POTION"
+      potion_type: "SWIFTNESS"    # any Bukkit PotionType
+      name: "&amp;bSwift Brew"
+    auto_unlock_on: ["SUGAR"]</code></pre>
+    <p>Wiki link added to the top of <code>config.yml</code> as a comment for new installs.</p>
+
     <!-- ═══ v0.1.4 ═══ -->
-    <h2 id="v014">v0.1.4 &mdash; Major Update</h2>
-    <p><em>February 17, 2026 &mdash; Latest release</em></p>
+    <h2 id="v014">v0.1.4: Major Update</h2>
+    <p><em>February 17, 2026</em></p>
 
     <h3>New Features</h3>
 
     <h3>In-Game Recipe Creator (<code>/ls create &lt;key&gt;</code>)</h3>
     <ul>
-      <li>Full click-based GUI recipe builder &mdash; no YAML editing needed</li>
+      <li>Full click-based GUI recipe builder, no YAML editing needed</li>
       <li>Supports all 9 recipe types: shaped, shapeless, furnace, blasting, smoking, campfire, stonecutting, smithing transform, and adjacent pair</li>
       <li>Click a slot, then click any item in your inventory to assign materials</li>
-      <li>Type selector &mdash; pick your recipe type visually, change it anytime</li>
-      <li>Result amount control &mdash; set output amount from 1&ndash;64 with +/- buttons (always starts at 1 when picking an item)</li>
-      <li>Cooking controls &mdash; adjust cooking time (+/-50 ticks) and experience (+/-0.1) directly in the GUI</li>
-      <li>Fuel selector &mdash; restrict which fuels are allowed for cooking recipes (click to add fuels, right-click to clear)</li>
-      <li>Direction option &mdash; for adjacent pair recipes, choose horizontal, vertical, or both placement directions</li>
+      <li>Type selector: pick your recipe type visually, change it anytime</li>
+      <li>Result amount control: set output amount from 1&ndash;64 with +/- buttons (always starts at 1 when picking an item)</li>
+      <li>Cooking controls: adjust cooking time (+/-50 ticks) and experience (+/-0.1) directly in the GUI</li>
+      <li>Fuel selector: restrict which fuels are allowed for cooking recipes (click to add fuels, right-click to clear)</li>
+      <li>Direction option: for adjacent pair recipes, choose horizontal, vertical, or both placement directions</li>
       <li>Auto-generates <code>auto_unlock_on</code> from ingredients</li>
       <li>Saves directly to <code>config.yml</code> and reloads instantly</li>
     </ul>
 
     <h3>Recipe Editing</h3>
     <ul>
-      <li>Edit button in recipe detail view (writable book icon) &mdash; loads existing recipe into the creator with all data pre-filled</li>
+      <li>Edit button in recipe detail view (writable book icon): loads existing recipe into the creator with all data pre-filled</li>
       <li>Supports editing all recipe types including shaped grid layout, cooking settings, fuel restrictions, and direction</li>
       <li>Saves changes in-place (replaces old config entry)</li>
     </ul>
 
     <h3>Recipe Deletion</h3>
     <ul>
-      <li>Delete button in recipe detail view (TNT icon) &mdash; removes recipe from config with one click</li>
+      <li>Delete button in recipe detail view (TNT icon) removes recipe from config with one click</li>
       <li>Instantly reloads after deletion</li>
     </ul>
 
@@ -140,19 +233,19 @@
 
     <h3>Bug Fixes</h3>
     <ul>
-      <li><strong>Smelting Output Fix</strong> &mdash; Fixed critical bug where custom cooking recipe outputs were blocked by <code>remove_by_output</code>. Example: custom "Crying Obsidian &rarr; Obsidian" recipe was blocked because OBSIDIAN was in the blocked outputs list. Custom recipes now correctly bypass the vanilla output blocker.</li>
-      <li><strong>Fuel Enforcement Fix</strong> &mdash; Switched from <code>FurnaceSmeltEvent</code> to <code>FurnaceBurnEvent</code> for fuel checking. <code>FurnaceBurnEvent</code> fires before fuel is consumed, making <code>getFuel()</code> reliable. Prevents infinite smelting loops when wrong fuel was used.</li>
-      <li><strong>Ingredient Display Deduplication</strong> &mdash; <code>/ls recipes</code> browser and detail view now groups duplicate ingredients. Shows <code>STONE x9</code> instead of listing STONE nine separate times.</li>
+      <li><strong>Smelting Output Fix</strong>: Fixed critical bug where custom cooking recipe outputs were blocked by <code>remove_by_output</code>. Example: custom "Crying Obsidian &rarr; Obsidian" recipe was blocked because OBSIDIAN was in the blocked outputs list. Custom recipes now correctly bypass the vanilla output blocker.</li>
+      <li><strong>Fuel Enforcement Fix</strong>: Switched from <code>FurnaceSmeltEvent</code> to <code>FurnaceBurnEvent</code> for fuel checking. <code>FurnaceBurnEvent</code> fires before fuel is consumed, making <code>getFuel()</code> reliable. Prevents infinite smelting loops when wrong fuel was used.</li>
+      <li><strong>Ingredient Display Deduplication</strong>: <code>/ls recipes</code> browser and detail view now groups duplicate ingredients. Shows <code>STONE x9</code> instead of listing STONE nine separate times.</li>
     </ul>
 
     <h3>Performance Optimizations</h3>
     <ul>
-      <li><strong>O(1) Fuel Index Lookup</strong> &mdash; Pre-built <code>cookingFuelIndex</code> map in RecipeLoader. Direct map lookup instead of iterating all recipes. Reduces furnace burn event processing from O(n) to O(1).</li>
-      <li><strong>Memory Leak Prevention</strong> &mdash; Creator sessions cleaned up on <code>PlayerQuitEvent</code>. Prevents session map from growing unbounded.</li>
-      <li><strong>Pre-computed Messages</strong> &mdash; No string processing on hot paths</li>
-      <li><strong>Debounced Rescanning</strong> &mdash; <code>pendingRescan</code> set + 2-tick delay to reduce event spam</li>
-      <li><strong>O(1) Material Checks</strong> &mdash; <code>boolean[]</code> indexed by <code>Material.ordinal()</code> for material presence checks</li>
-      <li><strong>Immutable Collections</strong> &mdash; <code>List.copyOf</code> / <code>Map.copyOf</code> for cached recipe data</li>
+      <li><strong>O(1) Fuel Index Lookup</strong>: Pre-built <code>cookingFuelIndex</code> map in RecipeLoader. Direct map lookup instead of iterating all recipes. Reduces furnace burn event processing from O(n) to O(1).</li>
+      <li><strong>Memory Leak Prevention</strong>: Creator sessions cleaned up on <code>PlayerQuitEvent</code>. Prevents session map from growing unbounded.</li>
+      <li><strong>Pre-computed Messages</strong>: No string processing on hot paths</li>
+      <li><strong>Debounced Rescanning</strong>: <code>pendingRescan</code> set + 2-tick delay to reduce event spam</li>
+      <li><strong>O(1) Material Checks</strong>: <code>boolean[]</code> indexed by <code>Material.ordinal()</code> for material presence checks</li>
+      <li><strong>Immutable Collections</strong>: <code>List.copyOf</code> / <code>Map.copyOf</code> for cached recipe data</li>
     </ul>
 
     <h3>Config Changes</h3>
@@ -184,9 +277,9 @@
 
     <h3>Added</h3>
     <ul>
-      <li>Instant recipe unlocks &mdash; players now automatically unlock custom recipes the moment they obtain any item listed in <code>auto_unlock_on</code></li>
-      <li><code>/ls rescan</code> command &mdash; instantly refreshes all players' recipe books without reloading the plugin</li>
-      <li>World filter improvements &mdash; more stable handling when switching between <code>whitelistworldoff: true/false</code></li>
+      <li>Instant recipe unlocks: players now automatically unlock custom recipes the moment they obtain any item listed in <code>auto_unlock_on</code></li>
+      <li><code>/ls rescan</code> command instantly refreshes all players' recipe books without reloading the plugin</li>
+      <li>World filter improvements bring more stable handling when switching between <code>whitelistworldoff: true/false</code></li>
     </ul>
 
     <h3>Fixed</h3>
@@ -205,16 +298,16 @@
 
     <div class="info-box note">
       <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-      <span>This version focused entirely on real-time recipe unlocking and smoother gameplay &mdash; no more relogs, no restarts.</span>
+      <span>This version focused entirely on real-time recipe unlocking and smoother gameplay. No more relogs, no restarts.</span>
     </div>
 
     <!-- ═══ v0.1.2 ═══ -->
     <h2 id="v012">v0.1.2</h2>
     <p><em>October 14, 2025</em></p>
     <ul>
-      <li>Added full support for <code>world_filter</code> &mdash; features can now be enabled globally or restricted to specific worlds</li>
+      <li>Added full support for <code>world_filter</code>: features can now be enabled globally or restricted to specific worlds</li>
       <li>Added <code>adjacent_pair</code> recipe type: two items crafted side-by-side or vertically anywhere on the 3&times;3 grid produce a result</li>
-      <li>Added <code>auto_unlock_on</code> fix &mdash; recipes now appear correctly in the green book once a player obtains any listed items</li>
+      <li>Added <code>auto_unlock_on</code> fix: recipes now appear correctly in the green book once a player obtains any listed items</li>
       <li>Added <code>/ls rescan</code> command to re-check all online players' inventories and unlock missing recipes instantly</li>
       <li>Added <code>/ls fixbook</code> command to clean duplicate or outdated recipe entries in players' books</li>
       <li>Improved <code>/ls list</code> output for better readability and detailed recipe status</li>
@@ -226,7 +319,7 @@
     <h2 id="v011">v0.1.1</h2>
     <p><em>October 13, 2025</em></p>
     <ul>
-      <li>Added full protection for <code>remove_by_output</code> items &mdash; blocked items can no longer be clicked, shift-crafted, or taken from the crafting table</li>
+      <li>Added full protection for <code>remove_by_output</code> items: blocked items can no longer be clicked, shift-crafted, or taken from the crafting table</li>
       <li>Ingredients are not consumed, and the result slot stays empty</li>
       <li>Added extra safety checks for drag and result slot interactions</li>
       <li>Updated <code>/ls help</code> version info to v0.1.1</li>
@@ -234,7 +327,7 @@
     </ul>
 
     <!-- ═══ v0.1.0 ═══ -->
-    <h2 id="v010">v0.1.0 &mdash; Initial Release</h2>
+    <h2 id="v010">v0.1.0: Initial Release</h2>
     <p><em>October 12, 2025</em></p>
     <ul>
       <li>Added support for custom <strong>shaped</strong> and <strong>shapeless</strong> recipes via <code>config.yml</code></li>
@@ -242,9 +335,9 @@
       <li>Added <code>auto_unlock_on</code> so recipes appear automatically in the recipe book when a trigger item is obtained</li>
       <li>Added <code>/lumensmith</code> command (alias <code>/ls</code>)
         <ul>
-          <li><code>/ls help</code> &mdash; show available commands</li>
-          <li><code>/ls list</code> &mdash; list blocked outputs and custom recipes</li>
-          <li><code>/ls reload</code> &mdash; reload all recipes and configuration</li>
+          <li><code>/ls help</code>: show available commands</li>
+          <li><code>/ls list</code>: list blocked outputs and custom recipes</li>
+          <li><code>/ls reload</code>: reload all recipes and configuration</li>
         </ul>
       </li>
       <li>Added beginner-friendly configuration layout with clear comments</li>
@@ -255,7 +348,7 @@
     </ul>
 
     <footer class="site-footer">
-      &copy; 2025-2026 <a href="https://github.com/nionx01" target="_blank" rel="noopener noreferrer">NionX</a> &mdash; All Rights Reserved
+      &copy; 2025-2026 <a href="https://github.com/nionx01" target="_blank" rel="noopener noreferrer">NionX</a>. All Rights Reserved.
     </footer>
   </main>
 
